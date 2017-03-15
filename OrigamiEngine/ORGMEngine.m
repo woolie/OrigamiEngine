@@ -69,7 +69,8 @@
                                      userInfo:nil];
     }
 
-    if (self.currentState == ORGMEngineStatePlaying) [self stop];
+    if (self.currentState == ORGMEngineStatePlaying) [self skip];
+
     dispatch_async([ORGMQueues processing_queue], ^{
         self.currentError = nil;
 
@@ -141,6 +142,15 @@
         self.input = nil;
         self.converter = nil;
         [self setCurrentState:ORGMEngineStateStopped];
+    });
+}
+
+- (void)skip {
+    dispatch_async([ORGMQueues processing_queue], ^{
+        [_input removeObserver:self forKeyPath:@"endOfInput"];
+        self.output = nil;
+        self.input = nil;
+        self.converter = nil;
     });
 }
 

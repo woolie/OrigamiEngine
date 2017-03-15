@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage              = "https://github.com/khaitu/OrigamiEngine.git"
   s.license               = 'MIT'
   s.author                = { "ap4y" => "lod@pisem.net" }
-  s.source                = { :git => "https://github.com/khaitu/OrigamiEngine.git", :tag => "1.0.14", :submodules => true }
+  s.source                = { :git => "https://github.com/khaitu/OrigamiEngine.git", :submodules => true }
   s.default_subspec       = 'Core'
   s.requires_arc          = true
   s.ios.deployment_target = '5.0'

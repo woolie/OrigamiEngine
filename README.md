@@ -11,7 +11,7 @@ Supported formats
 Features
 -------
 
-- Ligthweight: 300kb compiled, 1.2mb with libFLAC
+- Lightweight: 300kb compiled, 1.2mb with libFLAC
 - Small memory foorprint: no more than 2.5mb for the flac files
 - Low resource consumption: about 14% CPU usage for FLAC on ipod 4g
 - All operations in background with GCD
@@ -23,7 +23,7 @@ Features
 Overview
 -------
 
- Static library and [cocoapods](cocoapods.org) `podspec` provided. Static library can be compiled with embeeded FLAC library (check project targets). For OSX you can use static framework.
+ Static library and [cocoapods](cocoapods.org) `podspec` provided. Static library can be compiled with embedded FLAC library (check project targets). For OSX you can use static framework.
 
  Start playback:
 

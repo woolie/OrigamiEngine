@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -513,7 +513,7 @@
 				LastUpgradeCheck = 0820;
 			};
 			buildConfigurationList = 959B580315CEE13C00D44955 /* Build configuration list for PBXProject "OrigamiEngine" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (

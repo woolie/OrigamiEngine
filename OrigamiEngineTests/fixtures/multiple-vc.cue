@@ -6,8 +6,8 @@ PERFORMER "Patti Smith"
 TITLE "Banga"
 FILE "multiple-vc.flac" WAVE
   TRACK 01 AUDIO
-    TITLE "Amerigo"
-    PERFORMER "Patti Smith"
-    ISRC H2KM11202363
-    INDEX 01 00:00:00
+	TITLE "Amerigo"
+	PERFORMER "Patti Smith"
+	ISRC H2KM11202363
+	INDEX 01 00:00:00
 

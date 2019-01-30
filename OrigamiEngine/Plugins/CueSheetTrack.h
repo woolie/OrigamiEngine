@@ -22,30 +22,30 @@
 // THE SOFTWARE.
 
 @interface CueSheetTrack : NSObject
-@property (strong, nonatomic, readonly) NSURL *url;
-@property (copy, nonatomic, readonly) NSString *track;
-@property (copy, nonatomic, readonly) NSString *artist;
-@property (copy, nonatomic, readonly) NSString *album;
-@property (copy, nonatomic, readonly) NSString *title;
-@property (copy, nonatomic, readonly) NSString *genre;
-@property (copy, nonatomic, readonly) NSString *year;
-@property (assign, nonatomic, readonly) double time;
+@property (nonatomic, readonly) NSURL *url;
+@property (nonatomic, readonly) NSString *track;
+@property (nonatomic, readonly) NSString *artist;
+@property (nonatomic, readonly) NSString *album;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *genre;
+@property (nonatomic, readonly) NSString *year;
+@property (nonatomic, readonly) double time;
 
-+ (id)trackWithURL:(NSURL *)url
-             track:(NSString *)track
-              time:(double)seconds
-            artist:(NSString *)artist
-             album:(NSString *)album
-             title:(NSString *)title
-             genre:(NSString *)genre
-              year:(NSString *)year;
++ (id)trackWithURL:(NSURL*) url
+			 track:(NSString *)track
+			  time:(double)seconds
+			artist:(NSString *)artist
+			 album:(NSString *)album
+			 title:(NSString *)title
+			 genre:(NSString *)genre
+			  year:(NSString *)year;
 
-- (id)initWithURL:(NSURL *)url
-            track:(NSString *)track
-             time:(double)seconds
-           artist:(NSString *)artist
-            album:(NSString *)album
-            title:(NSString *)title
-            genre:(NSString *)genre
-             year:(NSString *)year;
+- (id)initWithURL:(NSURL*) url
+			track:(NSString *)track
+			 time:(double)seconds
+		   artist:(NSString *)artist
+			album:(NSString *)album
+			title:(NSString *)title
+			genre:(NSString *)genre
+			 year:(NSString *)year;
 @end

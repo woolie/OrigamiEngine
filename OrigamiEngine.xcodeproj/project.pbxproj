@@ -13,7 +13,6 @@
 		9502C2A916C592000054F4E3 /* CueSheetContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE215D444FF0029D115 /* CueSheetContainer.m */; };
 		9502C2AB16C592000054F4E3 /* CueSheetDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE415D444FF0029D115 /* CueSheetDecoder.m */; };
 		9502C2AD16C592000054F4E3 /* FileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9520746515D281DC00E0D0CB /* FileSource.m */; };
-		9502C2AF16C592000054F4E3 /* FlacDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A7F15D26811001AD694 /* FlacDecoder.m */; };
 		9502C2B116C592000054F4E3 /* HTTPSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A7C15D267D5001AD694 /* HTTPSource.m */; };
 		9502C2B316C592000054F4E3 /* M3uContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317BA215D552AA0029D115 /* M3uContainer.m */; };
 		9502C2B516C592000054F4E3 /* ORGMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583515CEE17200D44955 /* ORGMEngine.m */; };
@@ -29,7 +28,6 @@
 		9502C2C916C592290054F4E3 /* CueSheetContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 95317AE115D444FF0029D115 /* CueSheetContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2CB16C592290054F4E3 /* CueSheetDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 95317AE315D444FF0029D115 /* CueSheetDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2CD16C592290054F4E3 /* FileSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9520746415D281DC00E0D0CB /* FileSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9502C2CF16C592290054F4E3 /* FlacDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 95EE6A7E15D26811001AD694 /* FlacDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2D116C592290054F4E3 /* HTTPSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 95EE6A7B15D267D5001AD694 /* HTTPSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2D316C592290054F4E3 /* M3uContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 95317BA115D552A90029D115 /* M3uContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2D516C592290054F4E3 /* ORGMEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 959B583915CEE17200D44955 /* ORGMEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,7 +41,6 @@
 		9502C32316C5955F0054F4E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32216C5955F0054F4E3 /* AudioToolbox.framework */; };
 		9502C32516C595650054F4E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32416C595650054F4E3 /* AVFoundation.framework */; };
 		9502C32716C595B20054F4E3 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32616C595B20054F4E3 /* AudioUnit.framework */; };
-		9502C36716C59E970054F4E3 /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32016C594970054F4E3 /* FLAC.framework */; };
 		950B03B115DAB43400C2365B /* EngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B015DAB43400C2365B /* EngineTests.m */; };
 		950B03B415DAB58A00C2365B /* multiple-vc.flac in Resources */ = {isa = PBXBuildFile; fileRef = 950B03B315DAB58A00C2365B /* multiple-vc.flac */; };
 		950B03B715DAB5E600C2365B /* InputUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B615DAB5E600C2365B /* InputUnitTests.m */; };
@@ -83,20 +80,9 @@
 		959B584A15CEE17200D44955 /* ORGMInputUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583D15CEE17200D44955 /* ORGMInputUnit.m */; };
 		959B586115CEE1D900D44955 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586015CEE1D900D44955 /* AVFoundation.framework */; };
 		959B586315CEE1DF00D44955 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586215CEE1DF00D44955 /* AudioToolbox.framework */; };
-		95A3DE3416368B7B008F802D /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A3DE3316368B7B008F802D /* FLAC.framework */; };
-		95A3DE3516368B7B008F802D /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A3DE3316368B7B008F802D /* FLAC.framework */; };
 		95B2921115DBD3390031017D /* HTTPSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B2921015DBD3390031017D /* HTTPSourceTests.m */; };
-		95C86BC917F688AD00F6C878 /* OpusFileDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C86BC817F688AD00F6C878 /* OpusFileDecoder.m */; };
-		95C86BDC17F68A6600F6C878 /* OpusFileDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C86BC817F688AD00F6C878 /* OpusFileDecoder.m */; };
-		95C8739A17F6C9FF00F6C878 /* OpusFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739817F6C97500F6C878 /* OpusFile.framework */; };
-		95C8739C17F6CA4300F6C878 /* Opus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739B17F6CA4300F6C878 /* Opus.framework */; };
-		95C8739E17F6CA4F00F6C878 /* Ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739D17F6CA4F00F6C878 /* Ogg.framework */; };
-		95EE6A8015D26811001AD694 /* FlacDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A7F15D26811001AD694 /* FlacDecoder.m */; };
 		95EE6A8215D26876001AD694 /* HTTPSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A7C15D267D5001AD694 /* HTTPSource.m */; };
 		95EE6A8315D2687B001AD694 /* CoreAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A6D15D26758001AD694 /* CoreAudioDecoder.m */; };
-		95F27FDE17F6E1B4009E13C6 /* OpusFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739817F6C97500F6C878 /* OpusFile.framework */; };
-		95F27FDF17F6E1EE009E13C6 /* Ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739D17F6CA4F00F6C878 /* Ogg.framework */; };
-		95F27FE017F6E200009E13C6 /* Opus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C8739B17F6CA4300F6C878 /* Opus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,24 +176,13 @@
 		959B583F15CEE17200D44955 /* ORGMQueues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGMQueues.h; sourceTree = "<group>"; };
 		959B586015CEE1D900D44955 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		959B586215CEE1DF00D44955 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		95A3DE3316368B7B008F802D /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = "Audio-Frameworks/bin/flac/FLAC.framework"; sourceTree = "<group>"; };
 		95B2920F15DBD3390031017D /* HTTPSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSourceTests.h; sourceTree = "<group>"; };
 		95B2921015DBD3390031017D /* HTTPSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSourceTests.m; sourceTree = "<group>"; };
-		95C86BC717F688AD00F6C878 /* OpusFileDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpusFileDecoder.h; path = Plugins/OpusFileDecoder.h; sourceTree = "<group>"; };
-		95C86BC817F688AD00F6C878 /* OpusFileDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpusFileDecoder.m; path = Plugins/OpusFileDecoder.m; sourceTree = "<group>"; };
-		95C86BE117F6974F00F6C878 /* libopusfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopusfile.a; path = ../../../../usr/local/Cellar/opusfile/0.4/lib/libopusfile.a; sourceTree = "<group>"; };
-		95C86BE317F6977600F6C878 /* libopusfile.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopusfile.0.dylib; path = ../../../../usr/local/Cellar/opusfile/0.4/lib/libopusfile.0.dylib; sourceTree = "<group>"; };
-		95C872F217F6C39000F6C878 /* libopusfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopusfile.a; path = "Audio-Frameworks/bin/opusfile/libopusfile.a"; sourceTree = "<group>"; };
-		95C8739817F6C97500F6C878 /* OpusFile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpusFile.framework; path = "Audio-Frameworks/bin/opusfile/OpusFile.framework"; sourceTree = "<group>"; };
-		95C8739B17F6CA4300F6C878 /* Opus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Opus.framework; path = "Audio-Frameworks/bin/opus/Opus.framework"; sourceTree = "<group>"; };
-		95C8739D17F6CA4F00F6C878 /* Ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogg.framework; path = "Audio-Frameworks/bin/ogg/Ogg.framework"; sourceTree = "<group>"; };
 		95EE6A2E15D2629E001AD694 /* ORGMCommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGMCommonProtocols.h; sourceTree = "<group>"; };
 		95EE6A6C15D26758001AD694 /* CoreAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreAudioDecoder.h; path = Plugins/CoreAudioDecoder.h; sourceTree = "<group>"; };
 		95EE6A6D15D26758001AD694 /* CoreAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAudioDecoder.m; path = Plugins/CoreAudioDecoder.m; sourceTree = "<group>"; };
 		95EE6A7B15D267D5001AD694 /* HTTPSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPSource.h; path = Plugins/HTTPSource.h; sourceTree = "<group>"; };
 		95EE6A7C15D267D5001AD694 /* HTTPSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPSource.m; path = Plugins/HTTPSource.m; sourceTree = "<group>"; };
-		95EE6A7E15D26811001AD694 /* FlacDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlacDecoder.h; path = Plugins/FlacDecoder.h; sourceTree = "<group>"; };
-		95EE6A7F15D26811001AD694 /* FlacDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlacDecoder.m; path = Plugins/FlacDecoder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,10 +190,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C8739E17F6CA4F00F6C878 /* Ogg.framework in Frameworks */,
-				95C8739C17F6CA4300F6C878 /* Opus.framework in Frameworks */,
-				95C8739A17F6C9FF00F6C878 /* OpusFile.framework in Frameworks */,
-				9502C36716C59E970054F4E3 /* FLAC.framework in Frameworks */,
 				9502C32716C595B20054F4E3 /* AudioUnit.framework in Frameworks */,
 				9502C32516C595650054F4E3 /* AVFoundation.framework in Frameworks */,
 				9502C32316C5955F0054F4E3 /* AudioToolbox.framework in Frameworks */,
@@ -229,13 +200,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F27FE017F6E200009E13C6 /* Opus.framework in Frameworks */,
-				95F27FDF17F6E1EE009E13C6 /* Ogg.framework in Frameworks */,
-				95F27FDE17F6E1B4009E13C6 /* OpusFile.framework in Frameworks */,
 				959B586315CEE1DF00D44955 /* AudioToolbox.framework in Frameworks */,
 				959B586115CEE1D900D44955 /* AVFoundation.framework in Frameworks */,
 				959B580D15CEE13C00D44955 /* Foundation.framework in Frameworks */,
-				95A3DE3416368B7B008F802D /* FLAC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +215,6 @@
 				959B581C15CEE13C00D44955 /* SenTestingKit.framework in Frameworks */,
 				959B581F15CEE13C00D44955 /* Foundation.framework in Frameworks */,
 				959B582215CEE13C00D44955 /* libOrigamiEngine.a in Frameworks */,
-				95A3DE3516368B7B008F802D /* FLAC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +252,7 @@
 				959B580E15CEE13C00D44955 /* OrigamiEngine */,
 				959B582315CEE13C00D44955 /* OrigamiEngineTests */,
 				9502C29516C591C00054F4E3 /* OrigamiEngineOSX */,
+				E21AD528220164C2001F7BC1 /* modules */,
 				959B580B15CEE13C00D44955 /* Frameworks */,
 				959B580A15CEE13C00D44955 /* Products */,
 			);
@@ -304,13 +271,6 @@
 		959B580B15CEE13C00D44955 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95C8739D17F6CA4F00F6C878 /* Ogg.framework */,
-				95C8739B17F6CA4300F6C878 /* Opus.framework */,
-				95C8739817F6C97500F6C878 /* OpusFile.framework */,
-				95C872F217F6C39000F6C878 /* libopusfile.a */,
-				95C86BE317F6977600F6C878 /* libopusfile.0.dylib */,
-				95C86BE117F6974F00F6C878 /* libopusfile.a */,
-				95A3DE3316368B7B008F802D /* FLAC.framework */,
 				959B586215CEE1DF00D44955 /* AudioToolbox.framework */,
 				959B586015CEE1D900D44955 /* AVFoundation.framework */,
 				959B580C15CEE13C00D44955 /* Foundation.framework */,
@@ -408,16 +368,19 @@
 				95317AE415D444FF0029D115 /* CueSheetDecoder.m */,
 				9520746415D281DC00E0D0CB /* FileSource.h */,
 				9520746515D281DC00E0D0CB /* FileSource.m */,
-				95EE6A7E15D26811001AD694 /* FlacDecoder.h */,
-				95EE6A7F15D26811001AD694 /* FlacDecoder.m */,
 				95EE6A7B15D267D5001AD694 /* HTTPSource.h */,
 				95EE6A7C15D267D5001AD694 /* HTTPSource.m */,
 				95317BA115D552A90029D115 /* M3uContainer.h */,
 				95317BA215D552AA0029D115 /* M3uContainer.m */,
-				95C86BC717F688AD00F6C878 /* OpusFileDecoder.h */,
-				95C86BC817F688AD00F6C878 /* OpusFileDecoder.m */,
 			);
 			name = Plugin;
+			sourceTree = "<group>";
+		};
+		E21AD528220164C2001F7BC1 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +396,6 @@
 				9502C2C916C592290054F4E3 /* CueSheetContainer.h in Headers */,
 				9502C2CB16C592290054F4E3 /* CueSheetDecoder.h in Headers */,
 				9502C2CD16C592290054F4E3 /* FileSource.h in Headers */,
-				9502C2CF16C592290054F4E3 /* FlacDecoder.h in Headers */,
 				9502C2D116C592290054F4E3 /* HTTPSource.h in Headers */,
 				9502C2D316C592290054F4E3 /* M3uContainer.h in Headers */,
 				9502C2D516C592290054F4E3 /* ORGMEngine.h in Headers */,
@@ -576,14 +538,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C86BDC17F68A6600F6C878 /* OpusFileDecoder.m in Sources */,
 				9502C2A316C592000054F4E3 /* CoreAudioDecoder.m in Sources */,
 				9502C2A516C592000054F4E3 /* CueSheet.m in Sources */,
 				9502C2A716C592000054F4E3 /* CueSheetTrack.m in Sources */,
 				9502C2A916C592000054F4E3 /* CueSheetContainer.m in Sources */,
 				9502C2AB16C592000054F4E3 /* CueSheetDecoder.m in Sources */,
 				9502C2AD16C592000054F4E3 /* FileSource.m in Sources */,
-				9502C2AF16C592000054F4E3 /* FlacDecoder.m in Sources */,
 				9502C2B116C592000054F4E3 /* HTTPSource.m in Sources */,
 				9502C2B316C592000054F4E3 /* M3uContainer.m in Sources */,
 				9502C2B516C592000054F4E3 /* ORGMEngine.m in Sources */,
@@ -607,10 +567,8 @@
 				959B584615CEE17200D44955 /* ORGMQueues.m in Sources */,
 				959B584815CEE17200D44955 /* ORGMAudioUnit.m in Sources */,
 				959B584A15CEE17200D44955 /* ORGMInputUnit.m in Sources */,
-				95EE6A8015D26811001AD694 /* FlacDecoder.m in Sources */,
 				95EE6A8315D2687B001AD694 /* CoreAudioDecoder.m in Sources */,
 				95EE6A8215D26876001AD694 /* HTTPSource.m in Sources */,
-				95C86BC917F688AD00F6C878 /* OpusFileDecoder.m in Sources */,
 				95317ADC15D43C7B0029D115 /* ORGMPluginManager.m in Sources */,
 				95317AE915D445010029D115 /* CueSheet.m in Sources */,
 				95317AEA15D445010029D115 /* CueSheetContainer.m in Sources */,
@@ -664,7 +622,6 @@
 		9502C29F16C591C00054F4E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -672,18 +629,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Audio-Frameworks/bin/flac/FLAC_OSX",
-					"$(SRCROOT)/Audio-Frameworks/bin/opusfile/MacOS",
-					"$(SRCROOT)/Audio-Frameworks/bin/opus/MacOS",
-					"$(SRCROOT)/Audio-Frameworks/bin/ogg/MacOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OrigamiEngine;
@@ -695,7 +645,6 @@
 		9502C2A016C591C00054F4E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -704,18 +653,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Audio-Frameworks/bin/flac/FLAC_OSX",
-					"$(SRCROOT)/Audio-Frameworks/bin/opusfile/MacOS",
-					"$(SRCROOT)/Audio-Frameworks/bin/opus/MacOS",
-					"$(SRCROOT)/Audio-Frameworks/bin/ogg/MacOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OrigamiEngine;
 				SDKROOT = macosx;
@@ -727,7 +669,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -742,7 +683,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -758,7 +699,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -768,7 +710,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -782,7 +723,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -791,7 +732,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -801,19 +743,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/OrigamiEngine.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Audio-Frameworks/bin/flac",
-					"$(SRCROOT)/Audio-Frameworks/bin/opusfile",
-					"$(SRCROOT)/Audio-Frameworks/bin/ogg",
-					"$(SRCROOT)/Audio-Frameworks/bin/opus",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/Audio-Frameworks/bin/opus/include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -825,19 +760,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/OrigamiEngine.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Audio-Frameworks/bin/flac",
-					"$(SRCROOT)/Audio-Frameworks/bin/opusfile",
-					"$(SRCROOT)/Audio-Frameworks/bin/ogg",
-					"$(SRCROOT)/Audio-Frameworks/bin/opus",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/Audio-Frameworks/bin/opus/include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

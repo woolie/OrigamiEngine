@@ -29,12 +29,13 @@
 /**
  Libarary error codes
  */
-typedef enum : NSInteger {
-    ORGMEngineErrorCodesSourceFailed,
-    ORGMEngineErrorCodesConverterFailed,
-    ORGMEngineErrorCodesDecoderFailed,
-    ORGMEngineErrorCodesContainerFailed
-} ORGMEngineErrorCodes;
+typedef NS_ENUM(NSInteger, ORGMEngineErrorCodes)
+{
+	ORGMEngineErrorCodesSourceFailed,
+	ORGMEngineErrorCodesConverterFailed,
+	ORGMEngineErrorCodesDecoderFailed,
+	ORGMEngineErrorCodesContainerFailed
+};
 
 /**
  All classes that act as plugins must adopt the `ORGMEngineObject` protocol. This protocol is a stub, future versions may require common plugin object protocol.
@@ -52,21 +53,21 @@ typedef enum : NSInteger {
  
  @return A string with supported url scheme.
  */
-+ (NSString *)scheme;
++ (NSString*) scheme;
 
 /**
  Returns current source file url.
  
  @return Current file url.
  */
-- (NSURL *)url;
+- (NSURL*) url;
 
 /**
  Returns source file size.
  
  @return A file size in `bytes`.
  */
-- (long)size;
+- (long) size;
 
 /**
  Opens source file for `read`.
@@ -75,14 +76,14 @@ typedef enum : NSInteger {
  
  @return `YES` if success, otherwise `NO`.
  */
-- (BOOL)open:(NSURL *)url;
+- (BOOL) open:(NSURL*) url;
 
 /**
  Determines if source is seekable.
  
  @return `YES` if seekable, otherwise `NO`.
  */
-- (BOOL)seekable;
+- (BOOL) seekable;
 
 /**
  Seeks within a source file in specified direction.
@@ -92,14 +93,14 @@ typedef enum : NSInteger {
  
  @return `YES` if success, otherwise `NO`.
  */
-- (BOOL)seek:(long)position whence:(int)whence;
+- (BOOL) seek:(long)position whence:(int)whence;
 
 /**
  Returns current position offset within a source file.
  
  @return A position offset in `bytes`.
  */
-- (long)tell;
+- (long) tell;
 
 /**
  Reads specified amount of data from a source file into provided buffer.
@@ -109,12 +110,12 @@ typedef enum : NSInteger {
  
  @return Actual amount of `bytes` read from a source.
  */
-- (int)read:(void *)buffer amount:(int)amount;
+- (int) read:(void*) buffer amount:(int) amount;
 
 /**
  Closes a source file. 
  */
-- (void)close;
+- (void) close;
 @end
 
 /**
@@ -127,7 +128,7 @@ typedef enum : NSInteger {
  
  @return An array with supported file extensions.
  */
-+ (NSArray *)fileTypes;
++ (NSArray*) fileTypes;
 
 /**
  Parses and returns track urls from specified container.
@@ -136,7 +137,7 @@ typedef enum : NSInteger {
  
  @return An array of track urls from container.
  */
-+ (NSArray *)urlsForContainerURL:(NSURL *)url;
++ (NSArray*) urlsForContainerURL:(NSURL*) url;
 @end
 
 /**
@@ -150,7 +151,7 @@ typedef enum : NSInteger {
  
  @return An array with supported file extensions.
  */
-+ (NSArray *)fileTypes;
++ (NSArray*) fileTypes;
 
 /**
  Returns current audio properties.
@@ -166,7 +167,7 @@ typedef enum : NSInteger {
  
  @return A properties dictionary.
  */
-- (NSDictionary *)properties;
+- (NSDictionary*) properties;
 
 /**
  Returns current track metadata.
@@ -175,7 +176,7 @@ typedef enum : NSInteger {
  
  @return A Metadata dictionary or `nil` if track don't have metadata.
  */
-- (NSDictionary *)metadata;
+- (NSDictionary*) metadata;
 
 /**
  Reads and decodes specified amount of frames from a source into provided buffer.
@@ -194,7 +195,7 @@ typedef enum : NSInteger {
  
  @return `YES` if success, otherwise `NO`.
  */
-- (BOOL)open:(id<ORGMSource>)source;
+- (BOOL) open:(id<ORGMSource>)source;
 
 /**
  Seeks to a specified frame and continues decoding from that frame.
@@ -203,10 +204,10 @@ typedef enum : NSInteger {
  
  @return Actual offset in `frames`.
  */
-- (long)seek:(long)frame;
+- (long) seek:(long)frame;
 
 /**
  Closes decoder and corresponding source, deallocates unnecessary resources.
  */
-- (void)close;
+- (void) close;
 @end

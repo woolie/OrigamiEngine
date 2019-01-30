@@ -26,74 +26,81 @@
 
 #import "ORGMPluginManager.h"
 
-@interface CueSheetDecoder () {
-	long framePosition;
-    
-	long trackStart;
-	long trackEnd;		
+@interface CueSheetDecoder ()
+{
+	long	framePosition;
+
+	long	trackStart;
+	long	trackEnd;
 }
-@property (strong, nonatomic) id<ORGMSource> source;
-@property (strong, nonatomic) id<ORGMDecoder> decoder;
-@property (strong, nonatomic) CueSheet *cuesheet;
+@property (nonatomic, strong) id<ORGMSource> source;
+@property (nonatomic, strong) id<ORGMDecoder> decoder;
+@property (nonatomic, strong) CueSheet *cuesheet;
 @end
 
 @implementation CueSheetDecoder
 
-- (void)dealloc {
-    [self close];
+- (void) dealloc
+{
+	[self close];
 }
 
 #pragma mark - ORGMDecoder
 
-+ (NSArray *)fileTypes  {
++ (NSArray*) fileTypes
+{
 	return [NSArray arrayWithObject:@"cue"];
 }
 
-- (NSDictionary *)properties {
+- (NSDictionary*) properties {
 	NSMutableDictionary *properties = [[_decoder properties] mutableCopy];
 	[properties setObject:[NSNumber numberWithLong:(trackEnd - trackStart)]
-                   forKey:@"totalFrames"];
+				   forKey:@"totalFrames"];
 	return properties;
 }
 
-- (NSDictionary *)metadata {
-    NSDictionary *resultDict = nil;
-    for (CueSheetTrack *track in _cuesheet.tracks) {
-        if ([[_source.url fragment] isEqualToString:[track track]]) {
-            resultDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          track.artist, @"artist",
-                          track.album, @"album",
-                          track.title, @"title",
-                          [NSNumber numberWithInt:[track.track intValue]], @"track",
-                          track.genre, @"genre",
-                          track.year, @"year",
-                          nil];
-        }
-    }
-    return resultDict;
+- (NSDictionary*) metadata
+{
+	NSDictionary *resultDict = nil;
+	for (CueSheetTrack *track in _cuesheet.tracks)
+	{
+		if ([[_source.url fragment] isEqualToString:[track track]])
+		{
+			resultDict = [NSDictionary dictionaryWithObjectsAndKeys:
+						  track.artist, @"artist",
+						  track.album, @"album",
+						  track.title, @"title",
+						  [NSNumber numberWithInt:[track.track intValue]], @"track",
+						  track.genre, @"genre",
+						  track.year, @"year",
+						  nil];
+		}
+	}
+	return resultDict;
 }
 
-- (int)readAudio:(void *)buf frames:(UInt32)frames {
+- (int)readAudio:(void *)buf frames:(UInt32)frames
+{
 	if (framePosition + frames > trackEnd) {
-		frames = trackEnd - framePosition;
+		frames = (UInt32)(trackEnd - framePosition);
 	}
-    
+
 	if (!frames) {
 		return 0;
 	}
-    
+
 	int n = [_decoder readAudio:buf frames:frames];
 	framePosition += n;
 	return n;
 }
 
-- (BOOL)open:(id<ORGMSource>)s {
+- (BOOL) open:(id<ORGMSource>)s {
 	NSURL *url = [s url];
 	self.cuesheet = [[CueSheet alloc] initWithURL:url];
 	
-    ORGMPluginManager *pluginManager = [ORGMPluginManager sharedManager];
+	ORGMPluginManager *pluginManager = [ORGMPluginManager sharedManager];
 	for (int i = 0; i < _cuesheet.tracks.count; i++) {
-        CueSheetTrack *track = [_cuesheet.tracks objectAtIndex:i];
+		CueSheetTrack *track = [_cuesheet.tracks objectAtIndex:i];
 		if ([track.track isEqualToString:[url fragment]]) {
 			self.source = [pluginManager sourceForURL:track.url error:nil];
 
@@ -129,7 +136,7 @@
 	return NO;
 }
 
-- (long)seek:(long)frame {
+- (long) seek:(long)frame {
 	if (frame > trackEnd - trackStart) {
 		return -1;
 	}
@@ -139,9 +146,9 @@
 	return framePosition;
 }
 
-- (void)close {
-    [_decoder close];
-    [_source close];
+- (void) close {
+	[_decoder close];
+	[_source close];
 }
 
 @end

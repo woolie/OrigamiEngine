@@ -45,12 +45,12 @@
 
  @return `YES` if success, otherwise `NO`.
  */
-- (BOOL)openWithUrl:(NSURL *)url;
+- (BOOL) openWithUrl:(NSURL*) url;
 
 /**
  Closes input unit and corresponding decoder, deallocates unnecessary resources.
  */
-- (void)close;
+- (void) close;
 
 /**
  Returns current `PCM` audio format.
@@ -66,7 +66,7 @@
 
  @return Metadata dictionary or `nil` if track don't have metadata.
  */
-- (NSDictionary *)metadata;
+- (NSDictionary*) metadata;
 
 /**
  Returns frames number for the current source.
@@ -81,14 +81,14 @@
  @param time  Time interval offset in `seconds`.
  @param flush Defines if data should be flushed during seek.
  */
-- (void)seek:(double)time withDataFlush:(BOOL)flush;
+- (void) seek:(double)time withDataFlush:(BOOL)flush;
 
 /**
  Seeks to the time within playing track without flushing buffer.
 
  @param time Time interval offset in `seconds`.
  */
-- (void)seek:(double)time;
+- (void) seek:(double)time;
 
 /**
  Returns and removes `amount` of bytes from the beginning of the buffer with decoded data.
@@ -98,6 +98,6 @@
 
  @return Actual amount of shifted bytes.
  */
-- (int)shiftBytes:(NSUInteger)amount buffer:(void *)buffer;
+- (NSUInteger) shiftBytes:(NSUInteger) amount buffer:(void*) buffer;
 
 @end

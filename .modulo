@@ -1,0 +1,11 @@
+{
+  "name" : "OrigamiEngine",
+  "dependencies" : [
+
+  ],
+  "module" : false,
+  "options" : {
+    "depdencyInstallationPath" : "modules",
+    "alwaysVerbose" : false
+  }
+}

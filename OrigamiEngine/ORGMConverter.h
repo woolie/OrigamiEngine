@@ -36,7 +36,7 @@
 
  @return An initialized `ORGMConverter` object.
  */
-- (id)initWithInputUnit:(ORGMInputUnit *)inputUnit;
+- (instancetype)initWithInputUnit:(ORGMInputUnit *)inputUnit;
 
 /**
  Specifies output `PCM` format from output unit.
@@ -45,7 +45,7 @@
 
  @return `YES` if success, otherwise `NO`.
  */
-- (BOOL)setupWithOutputUnit:(ORGMOutputUnit *)outputUnit;
+- (BOOL) setupWithOutputUnit:(ORGMOutputUnit *)outputUnit;
 
 /**
  Reinitialize instance for a new input `PCM` format.
@@ -55,7 +55,7 @@
  @param inputUnit An input unit to specify input data format.
  @param flush A flag that allows you erase converted data before changing format.
  */
-- (void)reinitWithNewInput:(ORGMInputUnit *)inputUnit withDataFlush:(BOOL)flush;
+- (void) reinitWithNewInput:(ORGMInputUnit *)inputUnit withDataFlush:(BOOL)flush;
 
 /**
  Returns and removes `amount` of bytes from the beginning of the buffer with converted data.
@@ -65,17 +65,17 @@
 
  @return Actual amount of shifted bytes.
  */
-- (int)shiftBytes:(NSUInteger)amount buffer:(void *)buffer;
+- (NSUInteger) shiftBytes:(NSUInteger)amount buffer:(void*) buffer;
 
 /**
  Identifies if converter is ready for buffering (converter buffer has free space and output unit is not processing)
 
  @return `YES` if converter is ready for buffering.
  */
-- (BOOL)isReadyForBuffering;
+- (BOOL) isReadyForBuffering;
 
 /**
  Flushes current data accumulated in converter's buffer.
  */
-- (void)flushBuffer;
+- (void) flushBuffer;
 @end

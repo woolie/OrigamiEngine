@@ -23,199 +23,231 @@
 
 #import "HTTPSource.h"
 @interface HTTPSource () {
-    long _byteCount;
-    long _bytesRead;
-    long long _bytesExpected;
-    long long _bytesWaitingFromCache;
-    dispatch_semaphore_t _downloadingSemaphore;
+	long _byteCount;
+	long _bytesRead;
+	long long _bytesExpected;
+	long long _bytesWaitingFromCache;
+	dispatch_semaphore_t _downloadingSemaphore;
 
-    BOOL _connectionDidFail;
+	BOOL _connectionDidFail;
 }
-@property (strong, nonatomic) NSURLConnection *urlConnection;
-@property (strong, nonatomic) NSMutableURLRequest *request;
-@property (strong, nonatomic) NSFileHandle *fileHandle;
+@property (nonatomic, strong) NSURLConnection* urlConnection;
+@property (nonatomic, strong) NSMutableURLRequest* request;
+@property (nonatomic, strong) NSFileHandle* fileHandle;
 @end
-
-@implementation HTTPSource
 
 const NSTimeInterval readTimeout = 1.0;
 
-- (void)dealloc {
-    [self close];
-    [_fileHandle closeFile];
+@implementation HTTPSource
+
+- (void) dealloc
+{
+	[self close];
+	[_fileHandle closeFile];
 }
 
 #pragma mark - ORGMSource
 
-+ (NSString *)scheme {
-    return @"http";
++ (NSString*) scheme
+{
+	return @"http";
 }
 
-- (NSURL *)url {
-    return [_request URL];
+- (NSURL*) url
+{
+	return [_request URL];
 }
 
-- (long)size {
-    return (long)_bytesExpected;
+- (long) size
+{
+	return (long)_bytesExpected;
 }
 
-- (BOOL)open:(NSURL *)url {
-    self.request = [NSMutableURLRequest requestWithURL:url];
-    [self.request addValue:@"identity" forHTTPHeaderField:@"Accept-Encoding"];
+- (BOOL) open:(NSURL*) url
+{
+	self.request = [NSMutableURLRequest requestWithURL:url];
+	[self.request addValue:@"identity" forHTTPHeaderField:@"Accept-Encoding"];
 
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:_request
-                                                                  delegate:self
-                                                          startImmediately:NO];
-    self.urlConnection = connection;
+	NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:_request
+																  delegate:self
+														  startImmediately:NO];
+	self.urlConnection = connection;
 
-    if ([NSThread isMainThread]) {
-        [_urlConnection start];
-    } else { //fix nsurlconnection delegate
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [_urlConnection start];
-        });
-    }
+	if (NSThread.isMainThread)
+	{
+		[_urlConnection start];
+	}
+	else // fix nsurlconnection delegate
+	{
+		dispatch_sync(dispatch_get_main_queue(), ^
+		{
+			[_urlConnection start];
+		});
+	}
 
-    _bytesExpected = 0;
-    _bytesRead    = 0;
-    _byteCount     = 0;
-    _connectionDidFail = NO;
+	_bytesExpected = 0;
+	_bytesRead	= 0;
+	_byteCount	 = 0;
+	_connectionDidFail = NO;
 
-    [self prepareCache:[NSString stringWithFormat:@"%lx.%@",
-                        (unsigned long)[[url absoluteString] hash],
-                        url.pathExtension]];
+	[self prepareCache:[NSString stringWithFormat:@"%lx.%@",
+						(unsigned long)[[url absoluteString] hash],
+						url.pathExtension]];
 
-    _downloadingSemaphore = dispatch_semaphore_create(0);
-    dispatch_semaphore_wait(_downloadingSemaphore, DISPATCH_TIME_FOREVER);
+	_downloadingSemaphore = dispatch_semaphore_create(0);
+	dispatch_semaphore_wait(_downloadingSemaphore, DISPATCH_TIME_FOREVER);
 
-    return YES;
+	return YES;
 }
 
-- (BOOL)seekable {
-    return YES;
+- (BOOL) seekable
+{
+	return YES;
 }
 
-- (BOOL)seek:(long)position whence:(int)whence {
-    switch (whence) {
-        case SEEK_SET:
-            _bytesRead = position;
-            break;
-        case SEEK_CUR:
-            _bytesRead += position;
-            break;
-        case SEEK_END:
-            _bytesRead = (long)_bytesExpected - position;
-            break;
-    }
-    return YES;
+- (BOOL) seek:(long) position whence:(int) whence
+{
+	switch (whence)
+	{
+		case SEEK_SET:
+			_bytesRead = position;
+			break;
+		case SEEK_CUR:
+			_bytesRead += position;
+			break;
+		case SEEK_END:
+			_bytesRead = (long)_bytesExpected - position;
+			break;
+	}
+	return YES;
 }
 
-- (long)tell {
-    return _bytesRead;
+- (long) tell
+{
+	return _bytesRead;
 }
 
-- (int)read:(void *)buffer amount:(int)amount {
-    if (_bytesRead + amount > _bytesExpected)
-        return 0;
+- (int) read:(void*) buffer amount:(int) amount
+{
+	if (_bytesRead + amount > _bytesExpected)
+		return 0;
 
-    while(_byteCount < _bytesRead + amount) {
-        if (_connectionDidFail) return 0;
-        _bytesWaitingFromCache = _bytesRead + amount;
-        dispatch_semaphore_wait(_downloadingSemaphore, dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC));
-    }
+	while(_byteCount < _bytesRead + amount)
+	{
+		if (_connectionDidFail) return 0;
+		_bytesWaitingFromCache = _bytesRead + amount;
+		dispatch_semaphore_wait(_downloadingSemaphore, dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC));
+	}
 
-    int result = 0;
-    @autoreleasepool {
-        NSData *data = nil;
-        @synchronized(_fileHandle) {
-            [_fileHandle seekToFileOffset:_bytesRead];
-            data = [_fileHandle readDataOfLength:amount];
-        }
-        [data getBytes:buffer length:data.length];
-        _bytesRead += data.length;
+	int result = 0;
+	@autoreleasepool
+	{
+		NSData *data = nil;
+		@synchronized(_fileHandle)
+		{
+			[_fileHandle seekToFileOffset:_bytesRead];
+			data = [_fileHandle readDataOfLength:amount];
+		}
+		[data getBytes:buffer length:data.length];
+		_bytesRead += data.length;
 
-        result = data.length;
-    }
+		result = (int)data.length;
+	}
 
-    return result;
+	return result;
 }
 
-- (void)close {
-    [_urlConnection cancel];
+- (void) close
+{
+	[_urlConnection cancel];
 }
 
 #pragma mark - private
 
-+ (dispatch_queue_t)cachingQueue {
-    static dispatch_queue_t _cachingQueue;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _cachingQueue = dispatch_queue_create("com.origami.httpcache",
-                                              DISPATCH_QUEUE_SERIAL);
-    });
-    return _cachingQueue;
++ (dispatch_queue_t)cachingQueue
+{
+	static dispatch_queue_t _cachingQueue;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_cachingQueue = dispatch_queue_create("com.origami.httpcache",
+											  DISPATCH_QUEUE_SERIAL);
+	});
+	return _cachingQueue;
 }
 
-- (void)prepareCache:(NSString*)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *dataPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"StreamCache"];
-    NSFileManager *defaultFileManger = [NSFileManager defaultManager];
-    if (![defaultFileManger fileExistsAtPath:dataPath]) {
-        if (![defaultFileManger createDirectoryAtPath:dataPath
-                          withIntermediateDirectories:NO
-                                           attributes:nil
-                                                error:nil]) {
-            @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                           reason:NSLocalizedString(@"Unable create cache directory", nil)
-                                         userInfo:nil];
-        }
-    }
+- (void) prepareCache:(NSString*) fileName
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *dataPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"StreamCache"];
+	NSFileManager *defaultFileManger = [NSFileManager defaultManager];
+	if (![defaultFileManger fileExistsAtPath:dataPath])
+	{
+		if (![defaultFileManger createDirectoryAtPath:dataPath
+						  withIntermediateDirectories:NO
+										   attributes:nil
+												error:nil])
+		{
+			@throw [NSException exceptionWithName:NSInternalInconsistencyException
+										   reason:NSLocalizedString(@"Unable create cache directory", nil)
+										 userInfo:nil];
+		}
+	}
 
-    NSString *filePath = [dataPath stringByAppendingPathComponent:fileName];
-    if (![defaultFileManger fileExistsAtPath:filePath]) {
-        if (![defaultFileManger createFileAtPath:filePath
-                                        contents:nil
-                                      attributes:nil]) {
-            @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                           reason:NSLocalizedString(@"Unable create cache file", nil)
-                                         userInfo:nil];
-        }
-    }
+	NSString *filePath = [dataPath stringByAppendingPathComponent:fileName];
+	if (![defaultFileManger fileExistsAtPath:filePath])
+	{
+		if (![defaultFileManger createFileAtPath:filePath
+										contents:nil
+									  attributes:nil])
+		{
+			@throw [NSException exceptionWithName:NSInternalInconsistencyException
+										   reason:NSLocalizedString(@"Unable create cache file", nil)
+										 userInfo:nil];
+		}
+	}
 
-    self.fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+	self.fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
 }
 
 #pragma mark - NSURLConnection delegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    _bytesExpected = response.expectedContentLength;
-    dispatch_semaphore_signal(_downloadingSemaphore);
+- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	_bytesExpected = response.expectedContentLength;
+	dispatch_semaphore_signal(_downloadingSemaphore);
 
-    if ([_fileHandle seekToEndOfFile] == _bytesExpected) {
-        [_urlConnection cancel];
-        _byteCount = (long)_bytesExpected;
-    }
+	if ([_fileHandle seekToEndOfFile] == _bytesExpected)
+	{
+		[_urlConnection cancel];
+		_byteCount = (long)_bytesExpected;
+	}
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if(_byteCount >= _bytesWaitingFromCache) {
-        dispatch_semaphore_signal(_downloadingSemaphore);
-    }
+- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	if(_byteCount >= _bytesWaitingFromCache)
+	{
+		dispatch_semaphore_signal(_downloadingSemaphore);
+	}
 
-    if (data && _fileHandle) {
-        dispatch_async([HTTPSource cachingQueue], ^{
-            @synchronized(_fileHandle) {
-                [_fileHandle seekToFileOffset:_byteCount];
-                [_fileHandle writeData:data];
-            }
-            _byteCount += data.length;
-        });
-    }
+	if (data && _fileHandle)
+	{
+		dispatch_async([HTTPSource cachingQueue], ^
+		{
+			@synchronized(_fileHandle)
+			{
+				[_fileHandle seekToFileOffset:_byteCount];
+				[_fileHandle writeData:data];
+			}
+			_byteCount += data.length;
+		});
+	}
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    dispatch_semaphore_signal(_downloadingSemaphore);
-    _connectionDidFail = YES;
+- (void) connection:(NSURLConnection*) connection didFailWithError:(NSError*) error
+{
+	dispatch_semaphore_signal(_downloadingSemaphore);
+	_connectionDidFail = YES;
 }
 
 @end

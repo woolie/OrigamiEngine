@@ -32,64 +32,64 @@
 
 @implementation CusSheetDecoderTests
 
-- (void)setUp {
-    [super setUp];
-    _decoder = [[CueSheetDecoder alloc] init];
-    
-    FileSource *source = [[FileSource alloc] init];
-    
-    NSURL *cueUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
-                                                               withExtension:@"cue"];
-    NSString *cuePath = [[cueUrl absoluteString] stringByAppendingString:@"#01"];
-    cueUrl = [NSURL URLWithString:cuePath];
-    [source open:cueUrl];
-    
-    STAssertTrue([_decoder open:source], nil);
-    [source release];
+- (void) setUp {
+	[super setUp];
+	_decoder = [[CueSheetDecoder alloc] init];
+	
+	FileSource *source = [[FileSource alloc] init];
+	
+	NSURL *cueUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
+															   withExtension:@"cue"];
+	NSString *cuePath = [[cueUrl absoluteString] stringByAppendingString:@"#01"];
+	cueUrl = [NSURL URLWithString:cuePath];
+	[source open:cueUrl];
+	
+	STAssertTrue([_decoder open:source], nil);
+	[source release];
 }
 
-- (void)tearDown {
-    [_decoder close];
-    [_decoder release];
-    [super tearDown];
+- (void) tearDown {
+	[_decoder close];
+	[_decoder release];
+	[super tearDown];
 }
 
-- (void)testFlacDecoderShouldReturnSupportedFileTypes {
-    STAssertEqualObjects([CueSheetDecoder fileTypes], @[@"cue"], nil);
+- (void) testFlacDecoderShouldReturnSupportedFileTypes {
+	STAssertEqualObjects([CueSheetDecoder fileTypes], @[@"cue"], nil);
 }
 
-- (void)testFlacDecoderShouldReturnSuppertedValidProperties {
-    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSNumber numberWithInt:2], @"channels",
-                                [NSNumber numberWithInt:16], @"bitsPerSample",
-                                [NSNumber numberWithFloat:44100.0], @"sampleRate",
-                                [NSNumber numberWithDouble:162496.0], @"totalFrames",
-                                [NSNumber numberWithBool:YES], @"seekable",
-                                @"big",@"endian",
-                                nil];
-    STAssertEqualObjects([_decoder properties], properties, nil);
+- (void) testFlacDecoderShouldReturnSuppertedValidProperties {
+	NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSNumber numberWithInt:2], @"channels",
+								[NSNumber numberWithInt:16], @"bitsPerSample",
+								[NSNumber numberWithFloat:44100.0], @"sampleRate",
+								[NSNumber numberWithDouble:162496.0], @"totalFrames",
+								[NSNumber numberWithBool:YES], @"seekable",
+								@"big",@"endian",
+								nil];
+	STAssertEqualObjects([_decoder properties], properties, nil);
 }
 
-- (void)testFlacDecoderShouldReturnSuppertedValidMetadata {
-    NSDictionary *metadata = @{
-        @"album": @"Banga",
-        @"artist": @"Patti Smith",
-        @"genre": @"Rock",
-        @"title": @"Amerigo",
-        @"track": @1,
-        @"year": @"2012",
-    };
-    STAssertEqualObjects([_decoder metadata], metadata, nil);
+- (void) testFlacDecoderShouldReturnSuppertedValidMetadata {
+	NSDictionary *metadata = @{
+		@"album": @"Banga",
+		@"artist": @"Patti Smith",
+		@"genre": @"Rock",
+		@"title": @"Amerigo",
+		@"track": @1,
+		@"year": @"2012",
+	};
+	STAssertEqualObjects([_decoder metadata], metadata, nil);
 }
 
-- (void)testFlacDecoderShouldReadAudioData {
-    void *buffer = malloc(16 * 1024);
-    STAssertEquals([_decoder readAudio:buffer frames:4], 4, nil);
-    free(buffer);
+- (void) testFlacDecoderShouldReadAudioData {
+	void *buffer = malloc(16 * 1024);
+	STAssertEquals([_decoder readAudio:buffer frames:4], 4, nil);
+	free(buffer);
 }
 
-- (void)testFlacDecoderShouldSeekAudioData {
-    STAssertEquals([_decoder seek:10], 10L, nil);
+- (void) testFlacDecoderShouldSeekAudioData {
+	STAssertEquals([_decoder seek:10], 10L, nil);
 }
 
 @end

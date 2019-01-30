@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "ORGMAudioUnit.h"
 
 @protocol ORGMEngineDelegate;
@@ -29,12 +29,13 @@
 /**
  Specifies states of the engine.
  */
-typedef enum : NSInteger {
-    ORGMEngineStateStopped,
-    ORGMEngineStatePlaying,
-    ORGMEngineStatePaused,
-    ORGMEngineStateError
-} ORGMEngineState;
+typedef NS_ENUM(NSInteger, ORGMEngineState)
+{
+	ORGMEngineStateStopped,
+	ORGMEngineStatePlaying,
+	ORGMEngineStatePaused,
+	ORGMEngineStateError
+};
 
 /**
  `ORGMEngine` is a facade for audio playing functionality (decoding, converting, output). If you need common audio player functionality, you should use this class. In specific usecases (such as only decoding, metadata reading etc.) it would be more efficient to use dedicated functionality from other classes.
@@ -73,35 +74,35 @@ typedef enum : NSInteger {
 
  @param outputUnitClass Class that will be used during output unit initialisation. Must be subclass of ORGMOutputUnit.
  */
-- (void)playUrl:(NSURL *)url withOutputUnitClass:(Class)outputUnitClass;
+- (void) playUrl:(NSURL*) url withOutputUnitClass:(Class)outputUnitClass;
 
 /**
  Starts new playback process from corresponding source.
 
  @param url The url object to be used as a source path during playback.
  */
-- (void)playUrl:(NSURL *)url;
+- (void) playUrl:(NSURL*) url;
 
 /**
  Pauses the playback.
 
  @discussion This method will pause only output processing, decoding and converting will be still active. Only have effect during the `ORGMEngineStatePlaying` state.
  */
-- (void)pause;
+- (void) pause;
 
 /**
  Resumes the playback.
 
  @discussion Only have effect during the `ORGMEngineStatePaused` state.
  */
-- (void)resume;
+- (void) resume;
 
 /**
  Stops the playback.
 
  @discussion This will halt all playback lifecycle and will destroy underlying objects.
  */
-- (void)stop;
+- (void) stop;
 
 /**
  Provides current track length.
@@ -124,7 +125,7 @@ typedef enum : NSInteger {
 
  @return Metadata dictionary or `nil` if track don't have metadata.
  */
-- (NSDictionary *)metadata;
+- (NSDictionary*) metadata;
 
 /**
  Provides ability to seek within playing track.
@@ -132,14 +133,14 @@ typedef enum : NSInteger {
   @param time  Time interval offset in `seconds`;
   @param flush Defines if data should be flushed.
  */
-- (void)seekToTime:(double)time withDataFlush:(BOOL)flush;
+- (void) seekToTime:(double)time withDataFlush:(BOOL)flush;
 
 /**
  Provides ability to seek within playing track without data flush.
 
   @param time Time interval offset in `seconds`.
  */
-- (void)seekToTime:(double)time;
+- (void) seekToTime:(double)time;
 
 /**
  Provides next/previous functionaly.
@@ -149,7 +150,7 @@ typedef enum : NSInteger {
  @param url The url object to be used as a source path during playback.
  @param flush A flag that allows you erase accumulated data before changing the track.
  */
-- (void)setNextUrl:(NSURL *)url withDataFlush:(BOOL)flush;
+- (void) setNextUrl:(NSURL*) url withDataFlush:(BOOL)flush;
 @end
 
 /**
@@ -165,7 +166,7 @@ typedef enum : NSInteger {
 
  @return The url object to be used as a source path during playback.
  */
-- (NSURL *)engineExpectsNextUrl:(ORGMEngine *)engine;
+- (NSURL*) engineExpectsNextUrl:(ORGMEngine *)engine;
 
 @optional
 
@@ -175,5 +176,5 @@ typedef enum : NSInteger {
  @param engine The engine object posting this information.
  @param state New state of the engine object.
  */
-- (void)engine:(ORGMEngine *)engine didChangeState:(ORGMEngineState)state;
+- (void) engine:(ORGMEngine *)engine didChangeState:(ORGMEngineState)state;
 @end

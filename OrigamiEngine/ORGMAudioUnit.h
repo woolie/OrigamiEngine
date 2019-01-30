@@ -21,9 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import AudioToolbox;
 
-#import <AudioToolbox/AudioToolbox.h>
+#import <Foundation/NSObjCRuntime.h>
+
 #import "ORGMQueues.h"
 
 // default reading chunk size
@@ -34,10 +36,11 @@
 /**
  Specifies format of the PCM output
  */
-typedef enum : NSUInteger {
-    ORGMOutputFormatDefault,
-    ORGMOutputFormat24bit
-} ORGMEngineOutputFormat;
+typedef NS_OPTIONS(NSUInteger, ORGMEngineOutputFormat)
+{
+	ORGMOutputFormatDefault,
+	ORGMOutputFormat24bit
+};
 
 /**
  Abstract class for playback lifecycle classes.
@@ -49,17 +52,17 @@ typedef enum : NSUInteger {
  
  @discussion You should implement this method in subclass of `ORGMAudioUnit`.
  */
-- (void)process;
+- (void)  process;
 
 /**
  Converts audio properties from `NSDictionary` to `ASBD` format.
  
  @param properties A dictionary object. Supported keys:
-    - double `sampleRate`
-    - int `bitsPerSample`
-    - int `channels`
-    - NSString `endian`
-    - BOOL `unsigned`
+	- double `sampleRate`
+	- int `bitsPerSample`
+	- int `channels`
+	- NSString `endian`
+	- BOOL `unsigned`
  
  @return A new ASBD struct.
  */

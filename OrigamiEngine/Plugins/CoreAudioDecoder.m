@@ -28,306 +28,307 @@
 
 const int ID3V1_SIZE = 128;
 
-@interface CoreAudioDecoder () {
-    id<ORGMSource>  _source;
-    AudioFileID     _audioFile;
-    ExtAudioFileRef _in;
+@interface CoreAudioDecoder ()
+{
+	id<ORGMSource>	_source;
+	AudioFileID		_audioFile;
+	ExtAudioFileRef	_in;
 
-    int bitrate;
-    int bitsPerSample;
-    int channels;
-    float frequency;
-    long totalFrames;
+	int				bitrate;
+	int				bitsPerSample;
+	int				channels;
+	float			frequency;
+	long			totalFrames;
 }
-@property (strong, nonatomic) NSMutableDictionary *metadata;
+@property (nonatomic, strong) NSMutableDictionary *metadata;
 @end
 
 @implementation CoreAudioDecoder
 
-- (void)dealloc {
-    [self close];
+- (void) dealloc {
+	[self close];
 }
 
 #pragma mark - ORGMDecoder
-+ (NSArray *)fileTypes {
-    OSStatus err;
-    UInt32 size;
-    NSArray *sAudioExtensions;
++ (NSArray*) fileTypes {
+	OSStatus err;
+	UInt32 size;
+	NSArray *sAudioExtensions;
 
-    size = sizeof(sAudioExtensions);
-    err  = AudioFileGetGlobalInfo(kAudioFileGlobalInfo_AllExtensions, 0, NULL, &size, &sAudioExtensions);
-    if (noErr != err) {
-        return nil;
-    }
+	size = sizeof(sAudioExtensions);
+	err  = AudioFileGetGlobalInfo(kAudioFileGlobalInfo_AllExtensions, 0, NULL, &size, &sAudioExtensions);
+	if (noErr != err) {
+		return nil;
+	}
 
-    return sAudioExtensions;
+	return sAudioExtensions;
 }
 
-- (NSDictionary *)properties {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:channels], @"channels",
-            [NSNumber numberWithInt:bitsPerSample], @"bitsPerSample",
-            [NSNumber numberWithInt:bitrate], @"bitrate",
-            [NSNumber numberWithFloat:frequency], @"sampleRate",
-            [NSNumber numberWithLong:totalFrames], @"totalFrames",
-            [NSNumber numberWithBool:YES], @"seekable",
-            @"big", @"endian",
-            nil];
+- (NSDictionary*) properties {
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInt:channels], @"channels",
+			[NSNumber numberWithInt:bitsPerSample], @"bitsPerSample",
+			[NSNumber numberWithInt:bitrate], @"bitrate",
+			[NSNumber numberWithFloat:frequency], @"sampleRate",
+			[NSNumber numberWithLong:totalFrames], @"totalFrames",
+			[NSNumber numberWithBool:YES], @"seekable",
+			@"big", @"endian",
+			nil];
 }
 
-- (NSMutableDictionary *)metadata {
-    return _metadata;
+- (NSMutableDictionary*) metadata {
+	return _metadata;
 }
 
 - (int)readAudio:(void *)buf frames:(UInt32)frames {
-    OSStatus err;
-    AudioBufferList bufferList;
-    UInt32 frameCount;
+	OSStatus err;
+	AudioBufferList bufferList;
+	UInt32 frameCount;
 
-    bufferList.mNumberBuffers              = 1;
-    bufferList.mBuffers[0].mNumberChannels = channels;
-    bufferList.mBuffers[0].mData           = buf;
-    bufferList.mBuffers[0].mDataByteSize   = frames * channels * (bitsPerSample/8);
+	bufferList.mNumberBuffers			  = 1;
+	bufferList.mBuffers[0].mNumberChannels = channels;
+	bufferList.mBuffers[0].mData		   = buf;
+	bufferList.mBuffers[0].mDataByteSize   = frames * channels * (bitsPerSample/8);
 
-    frameCount = frames;
-    err        = ExtAudioFileRead(_in, &frameCount, &bufferList);
-    if (err != noErr) {
-        return 0;
-    }
+	frameCount = frames;
+	err		= ExtAudioFileRead(_in, &frameCount, &bufferList);
+	if (err != noErr) {
+		return 0;
+	}
 
-    return frameCount;
+	return frameCount;
 }
 
-- (BOOL)open:(id<ORGMSource>)source {
-    self.metadata = [NSMutableDictionary dictionary];
-    _source = source;
-    OSStatus result = AudioFileOpenWithCallbacks((__bridge void * _Nonnull)(_source), audioFile_ReadProc, NULL,
-                                                 audioFile_GetSizeProc, NULL, 0,
-                                                 &_audioFile);
+- (BOOL) open:(id<ORGMSource>)source {
+	self.metadata = [NSMutableDictionary dictionary];
+	_source = source;
+	OSStatus result = AudioFileOpenWithCallbacks((__bridge void * _Nonnull)(_source), audioFile_ReadProc, NULL,
+												 audioFile_GetSizeProc, NULL, 0,
+												 &_audioFile);
 
-    if (noErr != result) {
-        return NO;
-    }
+	if (noErr != result) {
+		return NO;
+	}
 
-    result = ExtAudioFileWrapAudioFileID(_audioFile, false, &_in);
-    if (noErr != result) {
-        return NO;
-    }
+	result = ExtAudioFileWrapAudioFileID(_audioFile, false, &_in);
+	if (noErr != result) {
+		return NO;
+	}
 
-    return [self readInfoFromExtAudioFileRef];
+	return [self readInfoFromExtAudioFileRef];
 }
 
-- (long)seek:(long)frame {
-    OSStatus err;
+- (long) seek:(long)frame {
+	OSStatus err;
 
-    err = ExtAudioFileSeek(_in, frame);
-    if (noErr != err) {
-        return -1;
-    }
+	err = ExtAudioFileSeek(_in, frame);
+	if (noErr != err) {
+		return -1;
+	}
 
-    return frame;
+	return frame;
 }
 
-- (void)close {
-    ExtAudioFileDispose(_in);
-    AudioFileClose(_audioFile);
-    [_source close];
+- (void) close {
+	ExtAudioFileDispose(_in);
+	AudioFileClose(_audioFile);
+	[_source close];
 }
 
 #pragma mark - private
 
-- (BOOL)readInfoFromExtAudioFileRef {
-    OSStatus err;
-    UInt32 size;
-    AudioStreamBasicDescription asbd;
+- (BOOL) readInfoFromExtAudioFileRef {
+	OSStatus err;
+	UInt32 size;
+	AudioStreamBasicDescription asbd;
 
-    size = sizeof(asbd);
-    err  = ExtAudioFileGetProperty(_in,
-            kExtAudioFileProperty_FileDataFormat,
-            &size,
-            &asbd);
-    if (err != noErr) {
-        ExtAudioFileDispose(_in);
-        return NO;
-    }
+	size = sizeof(asbd);
+	err  = ExtAudioFileGetProperty(_in,
+			kExtAudioFileProperty_FileDataFormat,
+			&size,
+			&asbd);
+	if (err != noErr) {
+		ExtAudioFileDispose(_in);
+		return NO;
+	}
 
-    bitrate       = 0;
-    bitsPerSample = asbd.mBitsPerChannel;
-    channels      = asbd.mChannelsPerFrame;
-    frequency     = asbd.mSampleRate;
+	bitrate	   = 0;
+	bitsPerSample = asbd.mBitsPerChannel;
+	channels	  = asbd.mChannelsPerFrame;
+	frequency	 = asbd.mSampleRate;
 
-    if(0 == bitsPerSample) {
-        bitsPerSample = 16;
-    }
+	if(0 == bitsPerSample) {
+		bitsPerSample = 16;
+	}
 
-    AudioStreamBasicDescription	result;
-    bzero(&result, sizeof(AudioStreamBasicDescription));
+	AudioStreamBasicDescription	result;
+	bzero(&result, sizeof(AudioStreamBasicDescription));
 
-    result.mFormatID    = kAudioFormatLinearPCM;
-    result.mFormatFlags = kAudioFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsBigEndian;
+	result.mFormatID	= kAudioFormatLinearPCM;
+	result.mFormatFlags = kAudioFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsBigEndian;
 
-    result.mSampleRate       = frequency;
-    result.mChannelsPerFrame = channels;
-    result.mBitsPerChannel   = bitsPerSample;
+	result.mSampleRate	   = frequency;
+	result.mChannelsPerFrame = channels;
+	result.mBitsPerChannel   = bitsPerSample;
 
-    result.mBytesPerPacket  = channels * (bitsPerSample / 8);
-    result.mFramesPerPacket = 1;
-    result.mBytesPerFrame   = channels * (bitsPerSample / 8);
+	result.mBytesPerPacket  = channels * (bitsPerSample / 8);
+	result.mFramesPerPacket = 1;
+	result.mBytesPerFrame   = channels * (bitsPerSample / 8);
 
-    err = ExtAudioFileSetProperty(_in, kExtAudioFileProperty_ClientDataFormat,
-            sizeof(result), &result);
-    if(noErr != err) {
-        ExtAudioFileDispose(_in);
-        return NO;
-    }
+	err = ExtAudioFileSetProperty(_in, kExtAudioFileProperty_ClientDataFormat,
+			sizeof(result), &result);
+	if(noErr != err) {
+		ExtAudioFileDispose(_in);
+		return NO;
+	}
 
-    AudioFileID audioFile;
-    size = sizeof(AudioFileID);
-    err = ExtAudioFileGetProperty(_in,
-            kExtAudioFileProperty_AudioFile,
-            &size,
-            &audioFile);
+	AudioFileID audioFile;
+	size = sizeof(AudioFileID);
+	err = ExtAudioFileGetProperty(_in,
+			kExtAudioFileProperty_AudioFile,
+			&size,
+			&audioFile);
 
-    if (err == noErr) {
-        self.metadata = [self metadataForFile:audioFile];
-    }
+	if (err == noErr) {
+		self.metadata = [self metadataForFile:audioFile];
+	}
 
-    Float64 total = 0;
-    size = sizeof(total);
-    err = AudioFileGetProperty(audioFile, kAudioFilePropertyEstimatedDuration, &size, &total);
-    if(err == noErr) totalFrames = total * frequency;
+	Float64 total = 0;
+	size = sizeof(total);
+	err = AudioFileGetProperty(audioFile, kAudioFilePropertyEstimatedDuration, &size, &total);
+	if(err == noErr) totalFrames = total * frequency;
 
-    return YES;
+	return YES;
 }
 
-- (NSMutableDictionary *)metadataForFile:(AudioFileID)audioFile {
+- (NSMutableDictionary*) metadataForFile:(AudioFileID)audioFile {
 
-    if ([_source isKindOfClass:NSClassFromString(@"HTTPSource")] &&
-        [[[_source url] pathExtension] isEqualToString:@"mp3"]) {
+	if ([_source isKindOfClass:NSClassFromString(@"HTTPSource")] &&
+		[[[_source url] pathExtension] isEqualToString:@"mp3"]) {
 
-        uint16_t data;
-        [_source seek:0 whence:SEEK_SET];
-        [_source read:&data amount:2];
-        if (data != 17481) return nil; // ID == 17481
-    }
+		uint16_t data;
+		[_source seek:0 whence:SEEK_SET];
+		[_source read:&data amount:2];
+		if (data != 17481) return nil; // ID == 17481
+	}
 
-    NSMutableDictionary *result = nil;
-    UInt32 dataSize = 0;
-    OSStatus err;
+	NSMutableDictionary *result = nil;
+	UInt32 dataSize = 0;
+	OSStatus err;
 
-    err = AudioFileGetPropertyInfo(audioFile,
-                                   kAudioFilePropertyInfoDictionary,
-                                   &dataSize,
-                                   0);
+	err = AudioFileGetPropertyInfo(audioFile,
+								   kAudioFilePropertyInfoDictionary,
+								   &dataSize,
+								   0);
 
-    if (err != noErr) return result;
+	if (err != noErr) return result;
 
-    CFDictionaryRef dictionary;
-    err = AudioFileGetProperty(audioFile, kAudioFilePropertyInfoDictionary, &dataSize, &dictionary);
-    if (err != noErr) return result;
+	CFDictionaryRef dictionary;
+	err = AudioFileGetProperty(audioFile, kAudioFilePropertyInfoDictionary, &dataSize, &dictionary);
+	if (err != noErr) return result;
 
-    result = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)dictionary];
-    CFRelease(dictionary);
+	result = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)dictionary];
+	CFRelease(dictionary);
 
-    err = AudioFileGetPropertyInfo(audioFile,
-                                   kAudioFilePropertyAlbumArtwork,
-                                   &dataSize,
-                                   0);
-    NSData *image;
-    if (err == noErr) {
-        AudioFileGetProperty(audioFile,
-                             kAudioFilePropertyAlbumArtwork,
-                             &dataSize,
-                             &image);
-        if (image) {
-            [self.metadata setObject:image forKey:@"picture"];
-            CFRelease((__bridge CFTypeRef)(image));
-        }
+	err = AudioFileGetPropertyInfo(audioFile,
+								   kAudioFilePropertyAlbumArtwork,
+								   &dataSize,
+								   0);
+	NSData *image;
+	if (err == noErr) {
+		AudioFileGetProperty(audioFile,
+							 kAudioFilePropertyAlbumArtwork,
+							 &dataSize,
+							 &image);
+		if (image) {
+			[self.metadata setObject:image forKey:@"picture"];
+			CFRelease((__bridge CFTypeRef)(image));
+		}
 
-    } else if ((image = [self imageDataFromID3Tag:audioFile])) {
-        [self.metadata setObject:image forKey:@"picture"];
-    }
+	} else if ((image = [self imageDataFromID3Tag:audioFile])) {
+		[self.metadata setObject:image forKey:@"picture"];
+	}
 
-    return result;
+	return result;
 }
 
 - (NSData *)imageDataFromID3Tag:(AudioFileID)audioFile {
 
-    OSStatus err;
+	OSStatus err;
 
-    UInt32 propertySize = 0;
-    AudioFileGetPropertyInfo(audioFile,
-            kAudioFilePropertyID3Tag,
-            &propertySize,
-            0);
+	UInt32 propertySize = 0;
+	AudioFileGetPropertyInfo(audioFile,
+			kAudioFilePropertyID3Tag,
+			&propertySize,
+			0);
 
-    char *rawID3Tag = (char *)malloc(propertySize);
-    err = AudioFileGetProperty(audioFile,
-            kAudioFilePropertyID3Tag,
-            &propertySize,
-            rawID3Tag);
+	char *rawID3Tag = (char *)malloc(propertySize);
+	err = AudioFileGetProperty(audioFile,
+			kAudioFilePropertyID3Tag,
+			&propertySize,
+			rawID3Tag);
 
-    if (err != noErr) {
-        free(rawID3Tag);
-        return nil;
-    }
+	if (err != noErr) {
+		free(rawID3Tag);
+		return nil;
+	}
 
-    UInt32 id3TagSize = 0;
-    UInt32 id3TagSizeLength = sizeof(id3TagSize);
-    AudioFormatGetProperty(kAudioFormatProperty_ID3TagSize,
-            propertySize,
-            rawID3Tag,
-            &id3TagSizeLength,
-            &id3TagSize);
+	UInt32 id3TagSize = 0;
+	UInt32 id3TagSizeLength = sizeof(id3TagSize);
+	AudioFormatGetProperty(kAudioFormatProperty_ID3TagSize,
+			propertySize,
+			rawID3Tag,
+			&id3TagSizeLength,
+			&id3TagSize);
 
-    CFDictionaryRef id3Dict;
-    AudioFormatGetProperty(kAudioFormatProperty_ID3TagToDictionary,
-            propertySize,
-            rawID3Tag,
-            &id3TagSize,
-            &id3Dict);
+	CFDictionaryRef id3Dict;
+	AudioFormatGetProperty(kAudioFormatProperty_ID3TagToDictionary,
+			propertySize,
+			rawID3Tag,
+			&id3TagSize,
+			&id3Dict);
 
-    NSDictionary *tagDict = [NSDictionary dictionaryWithDictionary:(__bridge NSDictionary *)id3Dict];
-    free(rawID3Tag);
-    CFRelease(id3Dict);
+	NSDictionary *tagDict = [NSDictionary dictionaryWithDictionary:(__bridge NSDictionary *)id3Dict];
+	free(rawID3Tag);
+	CFRelease(id3Dict);
 
-    NSDictionary *apicDict = tagDict[@"APIC"];
-    if (!apicDict) return nil;
+	NSDictionary *apicDict = tagDict[@"APIC"];
+	if (!apicDict) return nil;
 
-    NSString *picKey      = [[apicDict allKeys] lastObject];
-    NSDictionary *picDict = apicDict[picKey];
-    if (!picDict) return nil;
+	NSString *picKey	  = [[apicDict allKeys] lastObject];
+	NSDictionary *picDict = apicDict[picKey];
+	if (!picDict) return nil;
 
-    return picDict[@"data"];
+	return picDict[@"data"];
 }
 
 #pragma mark - callback functions
 
 static OSStatus audioFile_ReadProc(void *inClientData,
-                                   SInt64 inPosition,
-                                   UInt32 requestCount,
-                                   void *buffer,
-                                   UInt32 *actualCount) {
-    id<ORGMSource> source = (__bridge id<ORGMSource>)(inClientData);
+								   SInt64 inPosition,
+								   UInt32 requestCount,
+								   void *buffer,
+								   UInt32 *actualCount) {
+	id<ORGMSource> source = (__bridge id<ORGMSource>)(inClientData);
 
-    // Skip potential id3v1 tags over HTTP connection
-    if ([NSStringFromClass([source class]) isEqualToString:@"HTTPSource"] &&
-        [source size] - inPosition == ID3V1_SIZE) {
+	// Skip potential id3v1 tags over HTTP connection
+	if ([NSStringFromClass([source class]) isEqualToString:@"HTTPSource"] &&
+		[source size] - inPosition == ID3V1_SIZE) {
 
-        *actualCount = ID3V1_SIZE;
-        return noErr;
-    }
+		*actualCount = ID3V1_SIZE;
+		return noErr;
+	}
 
-    [source seek:(long)inPosition whence:0];
-    *actualCount = [source read:buffer amount:requestCount];
+	[source seek:(long)inPosition whence:0];
+	*actualCount = [source read:buffer amount:requestCount];
 
-    return noErr;
+	return noErr;
 }
 
 static SInt64 audioFile_GetSizeProc(void *inClientData) {
-    id<ORGMSource> source = (__bridge id<ORGMSource>)(inClientData);
-    SInt64 len = [source size];
-    return len;
+	id<ORGMSource> source = (__bridge id<ORGMSource>)(inClientData);
+	SInt64 len = [source size];
+	return len;
 }
 
 @end

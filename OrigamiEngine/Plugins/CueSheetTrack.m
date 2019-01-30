@@ -24,7 +24,7 @@
 #import "CueSheetTrack.h"
 
 @interface CueSheetTrack ()
-@property (strong, nonatomic) NSURL *url;
+@property (nonatomic, strong) NSURL *url;
 @property (copy, nonatomic) NSString *track;
 @property (copy, nonatomic) NSString *artist;
 @property (copy, nonatomic) NSString *album;
@@ -36,33 +36,33 @@
 
 @implementation CueSheetTrack
 
-+ (id)trackWithURL:(NSURL *)url
-             track:(NSString *)track
-              time:(double)seconds
-            artist:(NSString *)artist
-             album:(NSString *)album
-             title:(NSString *)title
-             genre:(NSString *)genre
-              year:(NSString *)year {
-    
++ (id)trackWithURL:(NSURL*) url
+			 track:(NSString *)track
+			  time:(double)seconds
+			artist:(NSString *)artist
+			 album:(NSString *)album
+			 title:(NSString *)title
+			 genre:(NSString *)genre
+			  year:(NSString *)year {
+	
 	return [[CueSheetTrack alloc] initWithURL:url
-                                         track:track
-                                          time:seconds
-                                        artist:artist
-                                         album:album
-                                         title:title
-                                         genre:genre
-                                          year:year];
+										 track:track
+										  time:seconds
+										artist:artist
+										 album:album
+										 title:title
+										 genre:genre
+										  year:year];
 }
 
-- (id)initWithURL:(NSURL *)url
-            track:(NSString *)track
-             time:(double)seconds
-           artist:(NSString *)artist
-            album:(NSString *)album
-            title:(NSString *)title
-            genre:(NSString *)genre
-             year:(NSString *)year {
+- (id)initWithURL:(NSURL*) url
+			track:(NSString *)track
+			 time:(double)seconds
+		   artist:(NSString *)artist
+			album:(NSString *)album
+			title:(NSString *)title
+			genre:(NSString *)genre
+			 year:(NSString *)year {
 
 	self = [super init];
 	if (self) {

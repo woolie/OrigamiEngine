@@ -59,17 +59,17 @@
 /**
  Pauses playback throught the output device. Idempotent method.
  */
-- (void)pause;
+- (void) pause;
 
 /**
  Resumes playback throught the output device. Idempotent method.
  */
-- (void)resume;
+- (void) resume;
 
 /**
  Stops playback throught the output device and deallocates unnecessary resources. Idempotent method.
  */
-- (void)stop;
+- (void) stop;
 
 /**
  Converts `frames` number to `seconds` according to the supported format.
@@ -90,15 +90,15 @@
 
  @param time Time interval offset in `seconds`.
  */
-- (void)seek:(double)time;
+- (void) seek:(double)time;
 
 /**
  Sets output unit volume. Default value `1`.
 
  @param volume Volume value in `percent`.
  */
-- (void)setVolume:(float)volume;
+- (void) setVolume:(float)volume;
 
-- (void)setSampleRate:(double)sampleRate;
+- (void) setSampleRate:(double)sampleRate;
 
 @end

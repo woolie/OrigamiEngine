@@ -24,57 +24,57 @@
 #import "FileSource.h"
 
 @interface FileSource () {
-    FILE *_fd;
+	FILE *_fd;
 }
-@property (strong, nonatomic) NSURL *url;
+@property (nonatomic, strong) NSURL *url;
 @end
 
 @implementation FileSource
 
-- (void)dealloc {
+- (void) dealloc {
 	[self close];
 }
 
 #pragma mark - ORGMSource
-+ (NSString *)scheme {
-    return @"file";
++ (NSString*) scheme {
+	return @"file";
 }
 
-- (NSURL *)url {
+- (NSURL*) url {
 	return _url;
 }
 
-- (long)size {
-    long curpos = ftell(_fd);
-    fseek (_fd, 0, SEEK_END);
-    long size = ftell(_fd);
-    fseek(_fd, curpos, SEEK_SET);
+- (long) size {
+	long curpos = ftell(_fd);
+	fseek (_fd, 0, SEEK_END);
+	long size = ftell(_fd);
+	fseek(_fd, curpos, SEEK_SET);
 	return size;
 }
 
-- (BOOL)open:(NSURL *)url {
+- (BOOL) open:(NSURL*) url {
 	[self setUrl:url];
 	_fd = fopen([[url path] UTF8String], "r");
 	return (_fd != NULL);
 }
 
-- (BOOL)seekable {
+- (BOOL) seekable {
 	return YES;
 }
 
-- (BOOL)seek:(long)position whence:(int)whence {
+- (BOOL) seek:(long)position whence:(int)whence {
 	return (fseek(_fd, position, whence) == 0);
 }
 
-- (long)tell {
-    return ftell(_fd);
+- (long) tell {
+	return ftell(_fd);
 }
 
 - (int)read:(void *)buffer amount:(int)amount {
-	return fread(buffer, 1, amount, _fd);
+	return (int)fread(buffer, 1, amount, _fd);
 }
 
-- (void)close {
+- (void) close {
 	if (_fd) {
 		fclose(_fd);
 		_fd = NULL;

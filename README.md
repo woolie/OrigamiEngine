@@ -4,7 +4,7 @@ Supported formats
 -------
 
   * Audio sources: http and local files
-  * Audio files: `opus`, `flac`, `mp3`, `m4a`, `wav` and other from CoreAudio
+  * Audio files: `opus`, `flac`, `mp3`, `m4a`, `wav` and others from CoreAudio
   * Playlists: `cue`, `m3u`
 
 
@@ -12,10 +12,10 @@ Features
 -------
 
 - Lightweight: 300kb compiled, 1.2mb with libFLAC
-- Small memory foorprint: no more than 2.5mb for the flac files
-- Low resource consumption: about 14% CPU usage for FLAC on ipod 4g
+- Small memory footprint: no more than 2.5mb for the flac files
+- Low resource consumption: about 14% CPU usage for FLAC on iPod Touch 4G
 - All operations in background with GCD
-- Event-based (using dispatch sources and CoreAudio async api)
+- Event-based (using dispatch sources and CoreAudio async API)
 - Provides full audio metadata (vorbis, id3 tags) with embeeded cover images
 - HTTP data caching
 - Tested (currently about 85% code coverage)

@@ -28,24 +28,25 @@
 @end
 
 @implementation ORGMAudioUnit
-- (void)process {
-    NSString *error = [NSString stringWithFormat:
-                       NSLocalizedString(@"You must override %@ in a subclass", nil),
-                       NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:error
-                                 userInfo:nil];
+- (void) process {
+	NSString *error = [NSString stringWithFormat:
+					   NSLocalizedString(@"You must override %@ in a subclass", nil),
+					   NSStringFromSelector(_cmd)];
+	@throw [NSException exceptionWithName:NSInternalInconsistencyException
+								   reason:error
+								 userInfo:nil];
 }
 
-AudioStreamBasicDescription propertiesToASBD(NSDictionary *properties) {
+AudioStreamBasicDescription propertiesToASBD(NSDictionary *properties)
+{
 	AudioStreamBasicDescription asbd;
 	asbd.mFormatID = kAudioFormatLinearPCM;
 	asbd.mFormatFlags = 0;
-    
+	
 	asbd.mSampleRate = [[properties objectForKey:@"sampleRate"] doubleValue];
-    
+	
 	asbd.mBitsPerChannel = [[properties objectForKey:@"bitsPerSample"] intValue];
-    
+	
 	asbd.mChannelsPerFrame = [[properties objectForKey:@"channels"] intValue];;
 	asbd.mBytesPerFrame = (asbd.mBitsPerChannel/8)*asbd.mChannelsPerFrame;
 	
@@ -53,7 +54,8 @@ AudioStreamBasicDescription propertiesToASBD(NSDictionary *properties) {
 	asbd.mBytesPerPacket = asbd.mBytesPerFrame * asbd.mFramesPerPacket;
 	asbd.mReserved = 0;
 	
-	if ([[properties objectForKey:@"endian"] isEqualToString:@"big"]) {
+	if ([[properties objectForKey:@"endian"] isEqualToString:@"big"])
+	{
 		asbd.mFormatFlags |= kLinearPCMFormatFlagIsBigEndian;
 		asbd.mFormatFlags |= kLinearPCMFormatFlagIsAlignedHigh;
 	}

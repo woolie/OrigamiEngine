@@ -1,5 +1,5 @@
 //
-// M3UTests.h
+// M3UTests.m
 //
 // Copyright (c) 2012 ap4y (lod@pisem.net)
 //
@@ -21,8 +21,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <SenTestingKit/SenTestingKit.h>
+@import XCTest;
 
-@interface M3UTests : SenTestCase
+#import "M3uContainer.h"
+
+@interface M3UTests : XCTestCase
+@end
+
+@implementation M3UTests
+
+- (void) testM3uContainerShouldParseM3uFileFixture
+{
+	NSURL* m3uUrl = [[NSBundle bundleForClass:[self class]] URLForResource:@"test" withExtension:@"m3u"];
+	NSArray* fileUrls = [M3uContainer urlsForContainerURL:m3uUrl];
+	
+	XCTAssertNotNil(fileUrls, @"");
+	XCTAssertEqual(fileUrls.count, 13U, @"");
+	
+	NSURL* bundleUrl = [NSBundle bundleForClass:[self class]].bundleURL;
+	
+	NSURL* firstUrl = [fileUrls objectAtIndex:0];
+	XCTAssertEqualObjects(firstUrl, [bundleUrl URLByAppendingPathComponent:@"Contents/Resources/01 - Lost in the Echo.flac"], @"");
+	
+	NSURL* lastUrl = [fileUrls objectAtIndex:12];
+	XCTAssertEqualObjects(lastUrl, [bundleUrl URLByAppendingPathComponent:@"Contents/Resources/13 - What I've Done (Live).flac"], @"");
+}
 
 @end

@@ -21,19 +21,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "ConverterUnitTests.h"
+@import XCTest;
 
 #import "ORGMConverter.h"
 #import "ORGMInputUnit.h"
 #import "ORGMOutputUnit.h"
 
-@interface ConverterUnitTests ()
+#if 0
+@interface ConverterUnitTests : XCTestCase
 @property (retain, nonatomic) ORGMConverter *converter;
 @end
 
 @implementation ConverterUnitTests
 
-- (void) setUp {
+- (void) setUp
+{
 	[super setUp];
 	ORGMInputUnit *input = [[ORGMInputUnit alloc] init];
 	NSURL *flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
@@ -42,29 +44,21 @@
 	_converter = [[ORGMConverter alloc] initWithInputUnit:input];
 	
 	ORGMOutputUnit *output = [[ORGMOutputUnit alloc] initWithConverter:_converter];
-	STAssertTrue([_converter setupWithOutputUnit:output], nil);		
-	
-	[input release];
-	[output release];
-}
-
-- (void) tearDown {
-	[_converter release];
-	[super tearDown];
+	XCTAssertTrue([_converter setupWithOutputUnit:output], @"");
 }
 
 - (void) testConverterUnitShouldHaveValidInputUnit {
-	STAssertNotNil(_converter.inputUnit, nil);
+	XCTAssertNotNil(_converter.inputUnit, @"");
 }
 
 - (void) testConverterUnitShouldHaveValidOutputUnit {
-	STAssertNotNil(_converter.outputUnit, nil);
+	XCTAssertNotNil(_converter.outputUnit, @"");
 }
 
 - (void) testConverterUnitShouldProcessData {
 	[_converter.inputUnit process];
 	[_converter process];
-	STAssertEquals(_converter.convertedData.length, 131072U, nil);
+	XCTAssertEqual(_converter.convertedData.length, 131072U, @"");
 }
 
 - (void) testInputUnitShouldNotExceedMaxAmountInBuffer {
@@ -73,7 +67,7 @@
 	NSUInteger _saveLength = _converter.convertedData.length;
 	[_converter.inputUnit process];
 	[_converter process];
-	STAssertEquals(_converter.convertedData.length, _saveLength, nil);
+	XCTAssertEqual(_converter.convertedData.length, _saveLength, @"");
 }
 
 - (void) testConverterUnitshouldReinitWithNewInputUnit {
@@ -87,9 +81,8 @@
 	[input openWithUrl:flacUrl];
 	[_converter reinitWithNewInput:input withDataFlush:NO];
 	
-	STAssertEquals(_converter.inputUnit, input, nil);
-	STAssertEquals(_converter.convertedData.length, _saveLength, nil);
-	[input release];
+	XCTAssertEqual(_converter.inputUnit, input, @"");
+	XCTAssertEqual(_converter.convertedData.length, _saveLength, @"");
 }
 
 - (void) testConverterUnitshouldReinitWithNewInputUnitAndFlushData {
@@ -102,9 +95,9 @@
 	[input openWithUrl:flacUrl];
 	[_converter reinitWithNewInput:input withDataFlush:YES];
 	
-	STAssertEquals(_converter.inputUnit, input, nil);
-	STAssertEquals(_converter.convertedData.length, 0U, nil);
-	[input release];
+	XCTAssertEqual(_converter.inputUnit, input, @"");
+	XCTAssertEqual(_converter.convertedData.length, 0U, @"");
 }
 
 @end
+#endif

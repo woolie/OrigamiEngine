@@ -38,40 +38,14 @@
 		9502C2DF16C592290054F4E3 /* ORGMQueues.h in Headers */ = {isa = PBXBuildFile; fileRef = 959B583F15CEE17200D44955 /* ORGMQueues.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2E116C592290054F4E3 /* ORGMCommonProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 95EE6A2E15D2629E001AD694 /* ORGMCommonProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9502C2E216C592290054F4E3 /* ORGMPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 95317ADA15D43C7A0029D115 /* ORGMPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9502C32316C5955F0054F4E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32216C5955F0054F4E3 /* AudioToolbox.framework */; };
-		9502C32516C595650054F4E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32416C595650054F4E3 /* AVFoundation.framework */; };
-		9502C32716C595B20054F4E3 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C32616C595B20054F4E3 /* AudioUnit.framework */; };
-		950B03B115DAB43400C2365B /* EngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B015DAB43400C2365B /* EngineTests.m */; };
-		950B03B415DAB58A00C2365B /* multiple-vc.flac in Resources */ = {isa = PBXBuildFile; fileRef = 950B03B315DAB58A00C2365B /* multiple-vc.flac */; };
-		950B03B715DAB5E600C2365B /* InputUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B615DAB5E600C2365B /* InputUnitTests.m */; };
-		950B03B815DAB6A800C2365B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586015CEE1D900D44955 /* AVFoundation.framework */; };
-		950B03B915DAB6AF00C2365B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586215CEE1DF00D44955 /* AudioToolbox.framework */; };
-		950B03BD15DAD05F00C2365B /* ConverterUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03BC15DAD05F00C2365B /* ConverterUnitTests.m */; };
-		950B03C015DAD6EC00C2365B /* OutputUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03BF15DAD6EC00C2365B /* OutputUnitTests.m */; };
-		950B12A415DAF073001E35FE /* PluginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B12A315DAF073001E35FE /* PluginManagerTests.m */; };
-		950B12A815DB90A4001E35FE /* FlacDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B12A715DB90A4001E35FE /* FlacDecoderTests.m */; };
-		950B12AB15DB9644001E35FE /* CoreAudioDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B12AA15DB9644001E35FE /* CoreAudioDecoderTests.m */; };
-		950B12AD15DB96A8001E35FE /* id3v22-tda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 950B12AC15DB96A8001E35FE /* id3v22-tda.mp3 */; };
 		95317ADC15D43C7B0029D115 /* ORGMPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317ADB15D43C7A0029D115 /* ORGMPluginManager.m */; };
 		95317ADE15D443430029D115 /* FileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9520746515D281DC00E0D0CB /* FileSource.m */; };
 		95317AE915D445010029D115 /* CueSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE015D444FE0029D115 /* CueSheet.m */; };
 		95317AEA15D445010029D115 /* CueSheetContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE215D444FF0029D115 /* CueSheetContainer.m */; };
 		95317AEB15D445010029D115 /* CueSheetDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE415D444FF0029D115 /* CueSheetDecoder.m */; };
 		95317AED15D445010029D115 /* CueSheetTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317AE815D445000029D115 /* CueSheetTrack.m */; };
-		95317B5915D51A410029D115 /* CueSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317B5815D51A410029D115 /* CueSheetTests.m */; };
-		95317B5F15D51B060029D115 /* multi_file.cue in Resources */ = {isa = PBXBuildFile; fileRef = 95317B5D15D51B060029D115 /* multi_file.cue */; };
-		95317B6015D51B060029D115 /* single_file.cue in Resources */ = {isa = PBXBuildFile; fileRef = 95317B5E15D51B060029D115 /* single_file.cue */; };
 		95317BA315D552AC0029D115 /* M3uContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317BA215D552AA0029D115 /* M3uContainer.m */; };
-		95317BA515D552FC0029D115 /* test.m3u in Resources */ = {isa = PBXBuildFile; fileRef = 95317BA415D552FC0029D115 /* test.m3u */; };
-		95317BA815D566460029D115 /* M3UTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317BA715D566460029D115 /* M3UTests.m */; };
-		9536D2A315DB9D3F0098A77C /* CusSheetDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9536D2A215DB9D3F0098A77C /* CusSheetDecoderTests.m */; };
-		9536D2A615DB9DD10098A77C /* multiple-vc.cue in Resources */ = {isa = PBXBuildFile; fileRef = 9536D2A515DB9DD10098A77C /* multiple-vc.cue */; };
-		9536D2A915DBABB10098A77C /* FileSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9536D2A815DBABB10098A77C /* FileSourceTests.m */; };
 		959B580D15CEE13C00D44955 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B580C15CEE13C00D44955 /* Foundation.framework */; };
-		959B581C15CEE13C00D44955 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B581B15CEE13C00D44955 /* SenTestingKit.framework */; };
-		959B581F15CEE13C00D44955 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B580C15CEE13C00D44955 /* Foundation.framework */; };
-		959B582215CEE13C00D44955 /* libOrigamiEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B580915CEE13C00D44955 /* libOrigamiEngine.a */; };
-		959B582815CEE13C00D44955 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 959B582615CEE13C00D44955 /* InfoPlist.strings */; };
 		959B584015CEE17200D44955 /* ORGMConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583415CEE17200D44955 /* ORGMConverter.m */; };
 		959B584215CEE17200D44955 /* ORGMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583515CEE17200D44955 /* ORGMEngine.m */; };
 		959B584415CEE17200D44955 /* ORGMOutputUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583815CEE17200D44955 /* ORGMOutputUnit.m */; };
@@ -80,18 +54,37 @@
 		959B584A15CEE17200D44955 /* ORGMInputUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B583D15CEE17200D44955 /* ORGMInputUnit.m */; };
 		959B586115CEE1D900D44955 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586015CEE1D900D44955 /* AVFoundation.framework */; };
 		959B586315CEE1DF00D44955 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B586215CEE1DF00D44955 /* AudioToolbox.framework */; };
-		95B2921115DBD3390031017D /* HTTPSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B2921015DBD3390031017D /* HTTPSourceTests.m */; };
 		95EE6A8215D26876001AD694 /* HTTPSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A7C15D267D5001AD694 /* HTTPSource.m */; };
 		95EE6A8315D2687B001AD694 /* CoreAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EE6A6D15D26758001AD694 /* CoreAudioDecoder.m */; };
+		E21AD54A22022C92001F7BC1 /* OrigamiEngineUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AD54922022C92001F7BC1 /* OrigamiEngineUnitTests.m */; };
+		E21AD54C22022C92001F7BC1 /* OrigamiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9502C28E16C591C00054F4E3 /* OrigamiEngine.framework */; };
+		E21AD55922022DB2001F7BC1 /* multiple-vc.cue in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55322022DB2001F7BC1 /* multiple-vc.cue */; };
+		E21AD55A22022DB2001F7BC1 /* single_file.cue in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55422022DB2001F7BC1 /* single_file.cue */; };
+		E21AD55B22022DB2001F7BC1 /* id3v22-tda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55522022DB2001F7BC1 /* id3v22-tda.mp3 */; };
+		E21AD55C22022DB2001F7BC1 /* test.m3u in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55622022DB2001F7BC1 /* test.m3u */; };
+		E21AD55D22022DB2001F7BC1 /* multiple-vc.flac in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55722022DB2001F7BC1 /* multiple-vc.flac */; };
+		E21AD55E22022DB2001F7BC1 /* multi_file.cue in Resources */ = {isa = PBXBuildFile; fileRef = E21AD55822022DB2001F7BC1 /* multi_file.cue */; };
+		E21AD56222023078001F7BC1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21AD56122023078001F7BC1 /* XCTest.framework */; };
+		E21AD5632202314A001F7BC1 /* CueSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317B5815D51A410029D115 /* CueSheetTests.m */; };
+		E21AD56422023372001F7BC1 /* M3UTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95317BA715D566460029D115 /* M3UTests.m */; };
+		E21AD5652202344B001F7BC1 /* EngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B015DAB43400C2365B /* EngineTests.m */; };
+		E21AD5662202377C001F7BC1 /* InputUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03B615DAB5E600C2365B /* InputUnitTests.m */; };
+		E21AD5672202377C001F7BC1 /* ConverterUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03BC15DAD05F00C2365B /* ConverterUnitTests.m */; };
+		E21AD5682202377C001F7BC1 /* OutputUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B03BF15DAD6EC00C2365B /* OutputUnitTests.m */; };
+		E21AD5692202377C001F7BC1 /* PluginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B12A315DAF073001E35FE /* PluginManagerTests.m */; };
+		E21AD56A2202377C001F7BC1 /* CoreAudioDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950B12AA15DB9644001E35FE /* CoreAudioDecoderTests.m */; };
+		E21AD56B2202377C001F7BC1 /* CusSheetDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9536D2A215DB9D3F0098A77C /* CusSheetDecoderTests.m */; };
+		E21AD56C2202377C001F7BC1 /* FileSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9536D2A815DBABB10098A77C /* FileSourceTests.m */; };
+		E21AD56D2202377C001F7BC1 /* HTTPSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B2921015DBD3390031017D /* HTTPSourceTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		959B582015CEE13C00D44955 /* PBXContainerItemProxy */ = {
+		E21AD54D22022C92001F7BC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 959B580015CEE13C00D44955 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 959B580815CEE13C00D44955;
-			remoteInfo = OrigamiEngine;
+			remoteGlobalIDString = 9502C28D16C591C00054F4E3;
+			remoteInfo = OrigamiEngineMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -109,26 +102,12 @@
 
 /* Begin PBXFileReference section */
 		9502C28E16C591C00054F4E3 /* OrigamiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OrigamiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9502C32016C594970054F4E3 /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = "../Audio-Frameworks/bin/flac/FLAC_OSX/FLAC.framework"; sourceTree = "<group>"; };
-		9502C32216C5955F0054F4E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		9502C32416C595650054F4E3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		9502C32616C595B20054F4E3 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
-		950B03AF15DAB43400C2365B /* EngineTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineTests.h; sourceTree = "<group>"; };
 		950B03B015DAB43400C2365B /* EngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineTests.m; sourceTree = "<group>"; };
-		950B03B315DAB58A00C2365B /* multiple-vc.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "multiple-vc.flac"; sourceTree = "<group>"; };
-		950B03B515DAB5E600C2365B /* InputUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputUnitTests.h; sourceTree = "<group>"; };
 		950B03B615DAB5E600C2365B /* InputUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputUnitTests.m; sourceTree = "<group>"; };
-		950B03BB15DAD05F00C2365B /* ConverterUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConverterUnitTests.h; sourceTree = "<group>"; };
 		950B03BC15DAD05F00C2365B /* ConverterUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConverterUnitTests.m; sourceTree = "<group>"; };
-		950B03BE15DAD6EC00C2365B /* OutputUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputUnitTests.h; sourceTree = "<group>"; };
 		950B03BF15DAD6EC00C2365B /* OutputUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputUnitTests.m; sourceTree = "<group>"; };
-		950B12A215DAF073001E35FE /* PluginManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManagerTests.h; sourceTree = "<group>"; };
 		950B12A315DAF073001E35FE /* PluginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManagerTests.m; sourceTree = "<group>"; };
-		950B12A615DB90A4001E35FE /* FlacDecoderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlacDecoderTests.h; sourceTree = "<group>"; };
-		950B12A715DB90A4001E35FE /* FlacDecoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlacDecoderTests.m; sourceTree = "<group>"; };
-		950B12A915DB9644001E35FE /* CoreAudioDecoderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreAudioDecoderTests.h; sourceTree = "<group>"; };
 		950B12AA15DB9644001E35FE /* CoreAudioDecoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreAudioDecoderTests.m; sourceTree = "<group>"; };
-		950B12AC15DB96A8001E35FE /* id3v22-tda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "id3v22-tda.mp3"; sourceTree = "<group>"; };
 		9520746415D281DC00E0D0CB /* FileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileSource.h; path = Plugins/FileSource.h; sourceTree = "<group>"; };
 		9520746515D281DC00E0D0CB /* FileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileSource.m; path = Plugins/FileSource.m; sourceTree = "<group>"; };
 		95317ADA15D43C7A0029D115 /* ORGMPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGMPluginManager.h; sourceTree = "<group>"; };
@@ -141,26 +120,16 @@
 		95317AE415D444FF0029D115 /* CueSheetDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CueSheetDecoder.m; path = Plugins/CueSheetDecoder.m; sourceTree = "<group>"; };
 		95317AE715D445000029D115 /* CueSheetTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CueSheetTrack.h; path = Plugins/CueSheetTrack.h; sourceTree = "<group>"; };
 		95317AE815D445000029D115 /* CueSheetTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CueSheetTrack.m; path = Plugins/CueSheetTrack.m; sourceTree = "<group>"; };
-		95317B5715D51A410029D115 /* CueSheetTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CueSheetTests.h; sourceTree = "<group>"; };
 		95317B5815D51A410029D115 /* CueSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CueSheetTests.m; sourceTree = "<group>"; };
-		95317B5D15D51B060029D115 /* multi_file.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multi_file.cue; sourceTree = "<group>"; };
-		95317B5E15D51B060029D115 /* single_file.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = single_file.cue; sourceTree = "<group>"; };
 		95317BA115D552A90029D115 /* M3uContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3uContainer.h; path = Plugins/M3uContainer.h; sourceTree = "<group>"; };
 		95317BA215D552AA0029D115 /* M3uContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M3uContainer.m; path = Plugins/M3uContainer.m; sourceTree = "<group>"; };
-		95317BA415D552FC0029D115 /* test.m3u */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.m3u; sourceTree = "<group>"; };
-		95317BA615D566450029D115 /* M3UTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3UTests.h; sourceTree = "<group>"; };
 		95317BA715D566460029D115 /* M3UTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3UTests.m; sourceTree = "<group>"; };
-		9536D2A115DB9D3F0098A77C /* CusSheetDecoderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusSheetDecoderTests.h; sourceTree = "<group>"; };
 		9536D2A215DB9D3F0098A77C /* CusSheetDecoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusSheetDecoderTests.m; sourceTree = "<group>"; };
-		9536D2A515DB9DD10098A77C /* multiple-vc.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "multiple-vc.cue"; sourceTree = "<group>"; };
-		9536D2A715DBABB10098A77C /* FileSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSourceTests.h; sourceTree = "<group>"; };
 		9536D2A815DBABB10098A77C /* FileSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSourceTests.m; sourceTree = "<group>"; };
 		959B580915CEE13C00D44955 /* libOrigamiEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOrigamiEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		959B580C15CEE13C00D44955 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		959B581015CEE13C00D44955 /* OrigamiEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OrigamiEngine-Prefix.pch"; sourceTree = "<group>"; };
-		959B581A15CEE13C00D44955 /* OrigamiEngineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrigamiEngineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		959B581B15CEE13C00D44955 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		959B582515CEE13C00D44955 /* OrigamiEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OrigamiEngineTests-Info.plist"; sourceTree = "<group>"; };
 		959B582715CEE13C00D44955 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		959B583415CEE17200D44955 /* ORGMConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGMConverter.m; sourceTree = "<group>"; };
 		959B583515CEE17200D44955 /* ORGMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGMEngine.m; sourceTree = "<group>"; };
@@ -176,13 +145,22 @@
 		959B583F15CEE17200D44955 /* ORGMQueues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGMQueues.h; sourceTree = "<group>"; };
 		959B586015CEE1D900D44955 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		959B586215CEE1DF00D44955 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		95B2920F15DBD3390031017D /* HTTPSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSourceTests.h; sourceTree = "<group>"; };
 		95B2921015DBD3390031017D /* HTTPSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSourceTests.m; sourceTree = "<group>"; };
 		95EE6A2E15D2629E001AD694 /* ORGMCommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGMCommonProtocols.h; sourceTree = "<group>"; };
 		95EE6A6C15D26758001AD694 /* CoreAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreAudioDecoder.h; path = Plugins/CoreAudioDecoder.h; sourceTree = "<group>"; };
 		95EE6A6D15D26758001AD694 /* CoreAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAudioDecoder.m; path = Plugins/CoreAudioDecoder.m; sourceTree = "<group>"; };
 		95EE6A7B15D267D5001AD694 /* HTTPSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPSource.h; path = Plugins/HTTPSource.h; sourceTree = "<group>"; };
 		95EE6A7C15D267D5001AD694 /* HTTPSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPSource.m; path = Plugins/HTTPSource.m; sourceTree = "<group>"; };
+		E21AD54722022C92001F7BC1 /* OrigamiEngineUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrigamiEngineUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21AD54922022C92001F7BC1 /* OrigamiEngineUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrigamiEngineUnitTests.m; sourceTree = "<group>"; };
+		E21AD54B22022C92001F7BC1 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21AD55322022DB2001F7BC1 /* multiple-vc.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "multiple-vc.cue"; sourceTree = "<group>"; };
+		E21AD55422022DB2001F7BC1 /* single_file.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = single_file.cue; sourceTree = "<group>"; };
+		E21AD55522022DB2001F7BC1 /* id3v22-tda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "id3v22-tda.mp3"; sourceTree = "<group>"; };
+		E21AD55622022DB2001F7BC1 /* test.m3u */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.m3u; sourceTree = "<group>"; };
+		E21AD55722022DB2001F7BC1 /* multiple-vc.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "multiple-vc.flac"; sourceTree = "<group>"; };
+		E21AD55822022DB2001F7BC1 /* multi_file.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multi_file.cue; sourceTree = "<group>"; };
+		E21AD56122023078001F7BC1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,9 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9502C32716C595B20054F4E3 /* AudioUnit.framework in Frameworks */,
-				9502C32516C595650054F4E3 /* AVFoundation.framework in Frameworks */,
-				9502C32316C5955F0054F4E3 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,52 +181,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		959B581615CEE13C00D44955 /* Frameworks */ = {
+		E21AD54422022C92001F7BC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950B03B915DAB6AF00C2365B /* AudioToolbox.framework in Frameworks */,
-				950B03B815DAB6A800C2365B /* AVFoundation.framework in Frameworks */,
-				959B581C15CEE13C00D44955 /* SenTestingKit.framework in Frameworks */,
-				959B581F15CEE13C00D44955 /* Foundation.framework in Frameworks */,
-				959B582215CEE13C00D44955 /* libOrigamiEngine.a in Frameworks */,
+				E21AD56222023078001F7BC1 /* XCTest.framework in Frameworks */,
+				E21AD54C22022C92001F7BC1 /* OrigamiEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9502C29516C591C00054F4E3 /* OrigamiEngineOSX */ = {
-			isa = PBXGroup;
-			children = (
-				9502C32616C595B20054F4E3 /* AudioUnit.framework */,
-				9502C32416C595650054F4E3 /* AVFoundation.framework */,
-				9502C32216C5955F0054F4E3 /* AudioToolbox.framework */,
-				9502C32016C594970054F4E3 /* FLAC.framework */,
-			);
-			name = OrigamiEngineOSX;
-			path = OrigamiEngineMac;
-			sourceTree = "<group>";
-		};
-		95317B5C15D51B060029D115 /* fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				950B12AC15DB96A8001E35FE /* id3v22-tda.mp3 */,
-				95317B5D15D51B060029D115 /* multi_file.cue */,
-				9536D2A515DB9DD10098A77C /* multiple-vc.cue */,
-				950B03B315DAB58A00C2365B /* multiple-vc.flac */,
-				95317B5E15D51B060029D115 /* single_file.cue */,
-				95317BA415D552FC0029D115 /* test.m3u */,
-			);
-			path = fixtures;
-			sourceTree = "<group>";
-		};
 		959B57FE15CEE13C00D44955 = {
 			isa = PBXGroup;
 			children = (
 				959B580E15CEE13C00D44955 /* OrigamiEngine */,
 				959B582315CEE13C00D44955 /* OrigamiEngineTests */,
-				9502C29516C591C00054F4E3 /* OrigamiEngineOSX */,
+				E21AD54822022C92001F7BC1 /* OrigamiEngineUnitTests */,
 				E21AD528220164C2001F7BC1 /* modules */,
 				959B580B15CEE13C00D44955 /* Frameworks */,
 				959B580A15CEE13C00D44955 /* Products */,
@@ -262,8 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				959B580915CEE13C00D44955 /* libOrigamiEngine.a */,
-				959B581A15CEE13C00D44955 /* OrigamiEngineTests.octest */,
 				9502C28E16C591C00054F4E3 /* OrigamiEngine.framework */,
+				E21AD54722022C92001F7BC1 /* OrigamiEngineUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,6 +218,7 @@
 		959B580B15CEE13C00D44955 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E21AD56122023078001F7BC1 /* XCTest.framework */,
 				959B586215CEE1DF00D44955 /* AudioToolbox.framework */,
 				959B586015CEE1D900D44955 /* AVFoundation.framework */,
 				959B580C15CEE13C00D44955 /* Foundation.framework */,
@@ -314,43 +262,17 @@
 		959B582315CEE13C00D44955 /* OrigamiEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				959B582415CEE13C00D44955 /* Supporting Files */,
-				95317B5715D51A410029D115 /* CueSheetTests.h */,
-				95317B5815D51A410029D115 /* CueSheetTests.m */,
-				95317BA615D566450029D115 /* M3UTests.h */,
-				95317BA715D566460029D115 /* M3UTests.m */,
-				950B03AF15DAB43400C2365B /* EngineTests.h */,
-				950B03B015DAB43400C2365B /* EngineTests.m */,
-				950B03B515DAB5E600C2365B /* InputUnitTests.h */,
-				950B03B615DAB5E600C2365B /* InputUnitTests.m */,
-				950B03BB15DAD05F00C2365B /* ConverterUnitTests.h */,
-				950B03BC15DAD05F00C2365B /* ConverterUnitTests.m */,
-				950B03BE15DAD6EC00C2365B /* OutputUnitTests.h */,
-				950B03BF15DAD6EC00C2365B /* OutputUnitTests.m */,
-				950B12A215DAF073001E35FE /* PluginManagerTests.h */,
-				950B12A315DAF073001E35FE /* PluginManagerTests.m */,
-				950B12A615DB90A4001E35FE /* FlacDecoderTests.h */,
-				950B12A715DB90A4001E35FE /* FlacDecoderTests.m */,
-				950B12A915DB9644001E35FE /* CoreAudioDecoderTests.h */,
-				950B12AA15DB9644001E35FE /* CoreAudioDecoderTests.m */,
-				9536D2A115DB9D3F0098A77C /* CusSheetDecoderTests.h */,
-				9536D2A215DB9D3F0098A77C /* CusSheetDecoderTests.m */,
-				9536D2A715DBABB10098A77C /* FileSourceTests.h */,
-				9536D2A815DBABB10098A77C /* FileSourceTests.m */,
-				95B2920F15DBD3390031017D /* HTTPSourceTests.h */,
-				95B2921015DBD3390031017D /* HTTPSourceTests.m */,
 			);
 			path = OrigamiEngineTests;
 			sourceTree = "<group>";
 		};
-		959B582415CEE13C00D44955 /* Supporting Files */ = {
+		959B582415CEE13C00D44955 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				95317B5C15D51B060029D115 /* fixtures */,
-				959B582515CEE13C00D44955 /* OrigamiEngineTests-Info.plist */,
+				E21AD55222022DB2001F7BC1 /* fixtures */,
 				959B582615CEE13C00D44955 /* InfoPlist.strings */,
 			);
-			name = "Supporting Files";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		95EE6A6B15D26746001AD694 /* Plugin */ = {
@@ -381,6 +303,40 @@
 			children = (
 			);
 			path = modules;
+			sourceTree = "<group>";
+		};
+		E21AD54822022C92001F7BC1 /* OrigamiEngineUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				959B582415CEE13C00D44955 /* SupportingFiles */,
+				95317B5815D51A410029D115 /* CueSheetTests.m */,
+				95317BA715D566460029D115 /* M3UTests.m */,
+				950B03B015DAB43400C2365B /* EngineTests.m */,
+				950B03B615DAB5E600C2365B /* InputUnitTests.m */,
+				950B03BC15DAD05F00C2365B /* ConverterUnitTests.m */,
+				950B03BF15DAD6EC00C2365B /* OutputUnitTests.m */,
+				950B12A315DAF073001E35FE /* PluginManagerTests.m */,
+				950B12AA15DB9644001E35FE /* CoreAudioDecoderTests.m */,
+				9536D2A215DB9D3F0098A77C /* CusSheetDecoderTests.m */,
+				9536D2A815DBABB10098A77C /* FileSourceTests.m */,
+				95B2921015DBD3390031017D /* HTTPSourceTests.m */,
+				E21AD54922022C92001F7BC1 /* OrigamiEngineUnitTests.m */,
+				E21AD54B22022C92001F7BC1 /* Info.plist */,
+			);
+			path = OrigamiEngineUnitTests;
+			sourceTree = "<group>";
+		};
+		E21AD55222022DB2001F7BC1 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				E21AD55322022DB2001F7BC1 /* multiple-vc.cue */,
+				E21AD55422022DB2001F7BC1 /* single_file.cue */,
+				E21AD55522022DB2001F7BC1 /* id3v22-tda.mp3 */,
+				E21AD55622022DB2001F7BC1 /* test.m3u */,
+				E21AD55722022DB2001F7BC1 /* multiple-vc.flac */,
+				E21AD55822022DB2001F7BC1 /* multi_file.cue */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,24 +403,23 @@
 			productReference = 959B580915CEE13C00D44955 /* libOrigamiEngine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		959B581915CEE13C00D44955 /* OrigamiEngineTests */ = {
+		E21AD54622022C92001F7BC1 /* OrigamiEngineUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 959B583115CEE13C00D44955 /* Build configuration list for PBXNativeTarget "OrigamiEngineTests" */;
+			buildConfigurationList = E21AD54F22022C92001F7BC1 /* Build configuration list for PBXNativeTarget "OrigamiEngineUnitTests" */;
 			buildPhases = (
-				959B581515CEE13C00D44955 /* Sources */,
-				959B581615CEE13C00D44955 /* Frameworks */,
-				959B581715CEE13C00D44955 /* Resources */,
-				959B581815CEE13C00D44955 /* ShellScript */,
+				E21AD54322022C92001F7BC1 /* Sources */,
+				E21AD54422022C92001F7BC1 /* Frameworks */,
+				E21AD54522022C92001F7BC1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				959B582115CEE13C00D44955 /* PBXTargetDependency */,
+				E21AD54E22022C92001F7BC1 /* PBXTargetDependency */,
 			);
-			name = OrigamiEngineTests;
-			productName = OrigamiEngineTests;
-			productReference = 959B581A15CEE13C00D44955 /* OrigamiEngineTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			name = OrigamiEngineUnitTests;
+			productName = OrigamiEngineUnitTests;
+			productReference = E21AD54722022C92001F7BC1 /* OrigamiEngineUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -473,6 +428,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					E21AD54622022C92001F7BC1 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
 			};
 			buildConfigurationList = 959B580315CEE13C00D44955 /* Build configuration list for PBXProject "OrigamiEngine" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -488,7 +448,7 @@
 			targets = (
 				959B580815CEE13C00D44955 /* OrigamiEngine */,
 				9502C28D16C591C00054F4E3 /* OrigamiEngineMac */,
-				959B581915CEE13C00D44955 /* OrigamiEngineTests */,
+				E21AD54622022C92001F7BC1 /* OrigamiEngineUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -501,37 +461,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		959B581715CEE13C00D44955 /* Resources */ = {
+		E21AD54522022C92001F7BC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				959B582815CEE13C00D44955 /* InfoPlist.strings in Resources */,
-				95317B5F15D51B060029D115 /* multi_file.cue in Resources */,
-				95317B6015D51B060029D115 /* single_file.cue in Resources */,
-				95317BA515D552FC0029D115 /* test.m3u in Resources */,
-				950B03B415DAB58A00C2365B /* multiple-vc.flac in Resources */,
-				950B12AD15DB96A8001E35FE /* id3v22-tda.mp3 in Resources */,
-				9536D2A615DB9DD10098A77C /* multiple-vc.cue in Resources */,
+				E21AD55922022DB2001F7BC1 /* multiple-vc.cue in Resources */,
+				E21AD55A22022DB2001F7BC1 /* single_file.cue in Resources */,
+				E21AD55D22022DB2001F7BC1 /* multiple-vc.flac in Resources */,
+				E21AD55E22022DB2001F7BC1 /* multi_file.cue in Resources */,
+				E21AD55B22022DB2001F7BC1 /* id3v22-tda.mp3 in Resources */,
+				E21AD55C22022DB2001F7BC1 /* test.m3u in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		959B581815CEE13C00D44955 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9502C28916C591C00054F4E3 /* Sources */ = {
@@ -578,32 +521,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		959B581515CEE13C00D44955 /* Sources */ = {
+		E21AD54322022C92001F7BC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95317B5915D51A410029D115 /* CueSheetTests.m in Sources */,
-				95317BA815D566460029D115 /* M3UTests.m in Sources */,
-				950B03B115DAB43400C2365B /* EngineTests.m in Sources */,
-				950B03B715DAB5E600C2365B /* InputUnitTests.m in Sources */,
-				950B03BD15DAD05F00C2365B /* ConverterUnitTests.m in Sources */,
-				950B03C015DAD6EC00C2365B /* OutputUnitTests.m in Sources */,
-				950B12A415DAF073001E35FE /* PluginManagerTests.m in Sources */,
-				950B12A815DB90A4001E35FE /* FlacDecoderTests.m in Sources */,
-				950B12AB15DB9644001E35FE /* CoreAudioDecoderTests.m in Sources */,
-				9536D2A315DB9D3F0098A77C /* CusSheetDecoderTests.m in Sources */,
-				9536D2A915DBABB10098A77C /* FileSourceTests.m in Sources */,
-				95B2921115DBD3390031017D /* HTTPSourceTests.m in Sources */,
+				E21AD5682202377C001F7BC1 /* OutputUnitTests.m in Sources */,
+				E21AD56422023372001F7BC1 /* M3UTests.m in Sources */,
+				E21AD5652202344B001F7BC1 /* EngineTests.m in Sources */,
+				E21AD5672202377C001F7BC1 /* ConverterUnitTests.m in Sources */,
+				E21AD56D2202377C001F7BC1 /* HTTPSourceTests.m in Sources */,
+				E21AD56B2202377C001F7BC1 /* CusSheetDecoderTests.m in Sources */,
+				E21AD5692202377C001F7BC1 /* PluginManagerTests.m in Sources */,
+				E21AD54A22022C92001F7BC1 /* OrigamiEngineUnitTests.m in Sources */,
+				E21AD56A2202377C001F7BC1 /* CoreAudioDecoderTests.m in Sources */,
+				E21AD56C2202377C001F7BC1 /* FileSourceTests.m in Sources */,
+				E21AD5662202377C001F7BC1 /* InputUnitTests.m in Sources */,
+				E21AD5632202314A001F7BC1 /* CueSheetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		959B582115CEE13C00D44955 /* PBXTargetDependency */ = {
+		E21AD54E22022C92001F7BC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 959B580815CEE13C00D44955 /* OrigamiEngine */;
-			targetProxy = 959B582015CEE13C00D44955 /* PBXContainerItemProxy */;
+			target = 9502C28D16C591C00054F4E3 /* OrigamiEngineMac */;
+			targetProxy = E21AD54D22022C92001F7BC1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -773,37 +716,91 @@
 			};
 			name = Release;
 		};
-		959B583215CEE13C00D44955 /* Debug */ = {
+		E21AD55022022C92001F7BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"\"$(SRCROOT)/Audio-Frameworks/bin/flac\"",
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T8F2X3K4US;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = OrigamiEngineUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
-				INFOPLIST_FILE = "OrigamiEngineTests/OrigamiEngineTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "origami.${PRODUCT_NAME:rfc1034identifier}";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woolsoft.OrigamiEngineUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		959B583315CEE13C00D44955 /* Release */ = {
+		E21AD55122022C92001F7BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"\"$(SRCROOT)/Audio-Frameworks/bin/flac\"",
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T8F2X3K4US;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = OrigamiEngineUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OrigamiEngine/OrigamiEngine-Prefix.pch";
-				INFOPLIST_FILE = "OrigamiEngineTests/OrigamiEngineTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "origami.${PRODUCT_NAME:rfc1034identifier}";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woolsoft.OrigamiEngineUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -837,11 +834,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		959B583115CEE13C00D44955 /* Build configuration list for PBXNativeTarget "OrigamiEngineTests" */ = {
+		E21AD54F22022C92001F7BC1 /* Build configuration list for PBXNativeTarget "OrigamiEngineUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				959B583215CEE13C00D44955 /* Debug */,
-				959B583315CEE13C00D44955 /* Release */,
+				E21AD55022022C92001F7BC1 /* Debug */,
+				E21AD55122022C92001F7BC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

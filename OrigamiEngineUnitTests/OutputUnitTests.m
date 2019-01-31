@@ -21,13 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "OutputUnitTests.h"
+@import XCTest;
 
 #import "ORGMConverter.h"
 #import "ORGMInputUnit.h"
 #import "ORGMOutputUnit.h"
 
-@interface OutputUnitTests ()
+@interface OutputUnitTests : XCTestCase
 @property (retain, nonatomic) ORGMOutputUnit *outputUnit;
 @end
 
@@ -43,35 +43,27 @@
 		
 	_outputUnit = [[ORGMOutputUnit alloc] initWithConverter:converter];
 	[converter setupWithOutputUnit:_outputUnit];
-	
-	[input release];
-	[converter release];
-}
-
-- (void) tearDown {
-	[_outputUnit release];
-	[super tearDown];
 }
 
 - (void) testOutputUnitShouldHaveValidFormat {
 	AudioStreamBasicDescription format = [_outputUnit format];
-	STAssertEquals((NSInteger)format.mChannelsPerFrame, 2, nil);
-	STAssertEquals((NSInteger)format.mBytesPerFrame, 4, nil);
-	STAssertEquals((NSInteger)format.mBytesPerPacket, 4, nil);
+	XCTAssertEqual((NSInteger)format.mChannelsPerFrame, 2, @"");
+	XCTAssertEqual((NSInteger)format.mBytesPerFrame, 4, @"");
+	XCTAssertEqual((NSInteger)format.mBytesPerPacket, 4, @"");
 }
 
 - (void) testOutputUnitShouldReturnAmountPlayed {
-	STAssertEqualsWithAccuracy([_outputUnit amountPlayed], 0.0, 0.1, nil);
+	XCTAssertEqualWithAccuracy([_outputUnit amountPlayed], 0.0, 0.1, @"");
 }
 
 - (void) testOutputUnitShouldConvertFramesToSeconds {
 	double seconds = [_outputUnit framesToSeconds:10000];
-	STAssertEqualsWithAccuracy(seconds, 0.2267, 0.1, nil);
+	XCTAssertEqualWithAccuracy(seconds, 0.2267, 0.1, @"");
 }
 
 - (void) testOutputUnitShouldChangePlayedTimeAfterSeek {
 	[_outputUnit seek:10.0];
-	STAssertEqualsWithAccuracy([_outputUnit amountPlayed], 10.0, 0.1, nil);
+	XCTAssertEqualWithAccuracy([_outputUnit amountPlayed], 10.0, 0.1, @"");
 }
 
 @end

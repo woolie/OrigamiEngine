@@ -26,16 +26,18 @@
 #import "ORGMCommonProtocols.h"
 
 @interface CueSheet ()
-@property (copy, nonatomic) NSArray *tracks;
+@property (nonatomic, copy) NSArray* tracks;
 @end
 
 @implementation CueSheet
 
 #pragma mark - public
 
-- (id)initWithURL:(NSURL*) url {
+- (instancetype) initWithURL:(NSURL*) url
+{
 	self = [super init];
-	if (self) {
+	if (self)
+	{
 		[self parseFileWithUrl:url];
 	}
 	
@@ -43,7 +45,8 @@
 }
 
 #pragma mark - private
-- (void) parseFileWithUrl:(NSURL*) url {
+- (void) parseFileWithUrl:(NSURL*) url
+{
 	NSStringEncoding encoding;
 	NSError *error = nil;
 	NSString *contents = [NSString stringWithContentsOfURL:url

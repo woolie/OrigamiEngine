@@ -1,5 +1,5 @@
 //
-// FlacDecoderTests.m
+// CoreAudioDecoderTests.m
 //
 // Copyright (c) 2012 ap4y (lod@pisem.net)
 //
@@ -21,65 +21,77 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "FlacDecoderTests.h"
+@import XCTest;
 
-#import "FlacDecoder.h"
+#import "CoreAudioDecoder.h"
 #import "FileSource.h"
 
-@interface FlacDecoderTests ()
-@property (nonatomic, retain) FlacDecoder *decoder;
+@interface CoreAudioDecoderTests : XCTestCase
+@property (nonatomic, retain) CoreAudioDecoder *decoder;
 @end
 
-@implementation FlacDecoderTests
+@implementation CoreAudioDecoderTests
 
 - (void) setUp {
 	[super setUp];
-	_decoder = [[FlacDecoder alloc] init];
+	_decoder = [[CoreAudioDecoder alloc] init];
 	
 	FileSource *source = [[FileSource alloc] init];
 	
-	NSURL *flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
-															withExtension:@"flac"];
-	[source open:flacUrl];
-
-	STAssertTrue([_decoder open:source], nil);
-	[source release];
+	NSURL *mp3Url = [[NSBundle bundleForClass:self.class] URLForResource:@"id3v22-tda"
+														   withExtension:@"mp3"];
+	[source open:mp3Url];
+	
+	XCTAssertTrue([_decoder open:source], @"");
 }
 
 - (void) tearDown {
 	[_decoder close];
-	[_decoder release];
 	[super tearDown];
 }
 
 - (void) testFlacDecoderShouldReturnSupportedFileTypes {
-	STAssertEqualObjects([FlacDecoder fileTypes], @[@"flac"], nil);
+	XCTAssertTrue([[CoreAudioDecoder fileTypes] containsObject:@"mp3"], @"");
+	XCTAssertTrue([[CoreAudioDecoder fileTypes] containsObject:@"wav"], @"");
+	XCTAssertTrue([[CoreAudioDecoder fileTypes] containsObject:@"m4a"], @"");
+	XCTAssertTrue([[CoreAudioDecoder fileTypes] containsObject:@"mp4"], @"");
 }
 
 - (void) testFlacDecoderShouldReturnSuppertedValidProperties {
 	NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSNumber numberWithInt:0], @"bitrate",
 								[NSNumber numberWithInt:2], @"channels",
 								[NSNumber numberWithInt:16], @"bitsPerSample",
 								[NSNumber numberWithFloat:44100.0], @"sampleRate",
-								[NSNumber numberWithDouble:162496.0], @"totalFrames",
+								[NSNumber numberWithDouble:9797760.0], @"totalFrames",
 								[NSNumber numberWithBool:YES], @"seekable",
 								@"big",@"endian",
 								nil];
-	STAssertEqualObjects([_decoder properties], properties, nil);
+	XCTAssertEqualObjects([_decoder properties], properties, @"");
 }
 
-- (void) testFlacDecoderShouldReturnSuppertedValidMetadata {	
-	STAssertEqualObjects([_decoder metadata], @{@"artist": @"Artist 2"}, nil);
+- (void) testFlacDecoderShouldReturnSuppertedValidMetadata {
+	NSDictionary *metadata = @{
+		@"album": @"n Water I Can Fly",
+		@"approximate duration in seconds": @"222.171",
+		@"artist": @"Basshunter",
+		@"comments": @"Ripped by THSLIVE",
+		@"genre": @"Dance",
+		@"title": @"I Can Walk On Water I Can Fly",
+		@"track number": @"1",
+		@"year": @"2010",
+	};
+	XCTAssertEqualObjects([_decoder metadata], metadata, @"");
 }
 
 - (void) testFlacDecoderShouldReadAudioData {
 	void *buffer = malloc(16 * 1024);
-	STAssertEquals([_decoder readAudio:buffer frames:4], 4, nil);
+	XCTAssertEqual([_decoder readAudio:buffer frames:4], 4, @"");
 	free(buffer);
 }
 
 - (void) testFlacDecoderShouldSeekAudioData {
-	STAssertEquals([_decoder seek:10], 10L, nil);
+	XCTAssertEqual([_decoder seek:10], 10L, @"");
 }
 
 @end

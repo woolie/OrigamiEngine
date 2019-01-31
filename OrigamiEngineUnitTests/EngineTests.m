@@ -21,7 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "EngineTests.h"
+@import XCTest;
+
+#if 0
+#import "ORGMEngine.h"
+
+@interface DelegateTester : NSObject <ORGMEngineDelegate>
+@property (assign, nonatomic) ORGMEngineState state;
+@property (assign, nonatomic) BOOL trackRequested;
+@end
 
 @implementation DelegateTester
 
@@ -36,56 +44,56 @@
 
 @end
 
-@interface EngineTests ()
-@property (retain, nonatomic) ORGMEngine *engine;
-@property (retain, nonatomic) DelegateTester *tester;
+@interface EngineTests : XCTestCase
+@property (nonatomic, strong) ORGMEngine* engine;
+@property (nonatomic, strong) DelegateTester* tester;
 @end
 
 @implementation EngineTests
 
-- (void) setUp {
+- (void) setUp
+{
 	[super setUp];
 	_engine = [[ORGMEngine alloc] init]; //unable to create from setup
 	_tester = [[DelegateTester alloc] init];
 	_engine.delegate = _tester;
-	
-	NSURL *flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
+
+	NSURL* flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
 															withExtension:@"flac"];
 	[_engine playUrl:flacUrl];
 }
 
-- (void) tearDown {
-	[_engine release];
-	[_tester release];
-	[super tearDown];
-}
-
-- (void) testEngineDelegateShouldReturnState {
+- (void) testEngineDelegateShouldReturnState
+{
 	NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1]; //delegate async dispatched to the main thread
-	while ([loopUntil timeIntervalSinceNow] > 0) {
+	while ([loopUntil timeIntervalSinceNow] > 0)
+	{
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
 								 beforeDate:loopUntil];
 	}
-	STAssertEquals(_tester.state, ORGMEngineStatePlaying, nil);
+	XCTAssertEqual(_tester.state, @"ORGMEngineStatePlaying");
 }
 
-- (void) testEngineDelegateShouldRequestNextTrackFromDelegate {
-	NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:3.0];
-	while ([loopUntil timeIntervalSinceNow] > 0) {
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-								 beforeDate:loopUntil];
+- (void) testEngineDelegateShouldRequestNextTrackFromDelegate
+{
+	NSDate* loopUntil = [NSDate dateWithTimeIntervalSinceNow:3.0];
+	while (loopUntil.timeIntervalSinceNow > 0)
+	{
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil];
 	}
-	STAssertTrue(_tester.trackRequested, nil);
+	XCTAssertTrue(_tester.trackRequested, @"");
 }
 
-- (void) testEngineShouldChangeStateToStoppedIfNoNextTrackIsGiven {
-	NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:3.0];
-	while ([loopUntil timeIntervalSinceNow] > 0) {
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-								 beforeDate:loopUntil];
+- (void) testEngineShouldChangeStateToStoppedIfNoNextTrackIsGiven
+{
+	NSDate* loopUntil = [NSDate dateWithTimeIntervalSinceNow:3.0];
+	while (loopUntil.timeIntervalSinceNow > 0)
+	{
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil];
 	}
-	STAssertTrue(_engine.currentState, ORGMEngineStateStopped);
+	XCTAssertTrue(_engine.currentState, @"ORGMEngineStateStopped");
 }
-
 
 @end
+#endif
+

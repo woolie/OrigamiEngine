@@ -21,11 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "FileSourceTests.h"
+@import XCTest;
 
 #import "FileSource.h"
 
-@interface FileSourceTests ()
+@interface FileSourceTests : XCTestCase
 @property (retain, nonatomic) FileSource *source;
 @end
 
@@ -37,41 +37,40 @@
 	_source = [[FileSource alloc] init];
 	NSURL *flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
 															withExtension:@"flac"];
-	STAssertTrue([_source open:flacUrl], nil);
+	XCTAssertTrue([_source open:flacUrl], @"");
 }
 
 - (void) tearDown {
 	[_source close];
-	[_source release];
 	[super tearDown];
 }
 
 - (void) testFileSourceShouldReturnValidScheme {
-	STAssertEqualObjects([FileSource scheme], @"file", nil);
+	XCTAssertEqualObjects([FileSource scheme], @"file", @"");
 }
 
 - (void) testFileSourceShouldReturnValidUrl {
 	NSURL *flacUrl = [[NSBundle bundleForClass:self.class] URLForResource:@"multiple-vc"
 															withExtension:@"flac"];
-	STAssertEqualObjects([_source url], flacUrl, nil);
+	XCTAssertEqualObjects([_source url], flacUrl, @"");
 }
 
 - (void) testFileSourceShouldReturnCorrectSize {
-	STAssertEquals([_source size], 4754L, nil);
+	XCTAssertEqual([_source size], 4754L, @"");
 }
 
 - (void) testFileSourceShouldSeekToPositionWithWhenceAndTellCurrentPosition {
-	STAssertTrue([_source seek:100 whence:SEEK_SET], nil);
-	STAssertEquals([_source tell], 100L, nil);
-	STAssertTrue([_source seek:100 whence:SEEK_CUR], nil);
-	STAssertEquals([_source tell], 200L, nil);
-	STAssertTrue([_source seek:0 whence:SEEK_END], nil);
-	STAssertEquals([_source tell], 4754L, nil);
+	XCTAssertTrue([_source seek:100 whence:SEEK_SET], @"");
+	XCTAssertEqual([_source tell], 100L, @"");
+	XCTAssertTrue([_source seek:100 whence:SEEK_CUR], @"");
+	XCTAssertEqual([_source tell], 200L, @"");
+	XCTAssertTrue([_source seek:0 whence:SEEK_END], @"");
+	XCTAssertEqual([_source tell], 4754L, @"");
 }
 
 - (void) testFileSourceShouldReadData {
 	void *buffer = malloc(100);
-	STAssertEquals([_source read:buffer amount:100], 100, nil);
+	XCTAssertEqual([_source read:buffer amount:100], 100, @"");
 	free(buffer);
 }
 

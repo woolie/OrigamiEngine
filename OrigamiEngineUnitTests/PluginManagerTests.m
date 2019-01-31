@@ -21,27 +21,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "PluginManagerTests.h"
+@import XCTest;
 
 #import "ORGMPluginManager.h"
 
 #import "HTTPSource.h"
 #import "FileSource.h"
 
-#import "FlacDecoder.h"
 #import "CoreAudioDecoder.h"
 #import "CueSheetDecoder.h"
 
 #import "CueSheetContainer.h"
 #import "M3uContainer.h"
 
+@interface PluginManagerTests : XCTestCase
+@end
+
 @implementation PluginManagerTests
 
 - (void) testManagerShouldReturnErrorForUnknownSource {
 	NSURL *url = [NSURL URLWithString:@"http2://mp3.com/test.mp3"];
 	NSError *error;
-	STAssertNil([[ORGMPluginManager sharedManager] sourceForURL:url error:&error], nil);
-	STAssertEquals(error.code, ORGMEngineErrorCodesSourceFailed, nil);
+	XCTAssertNil([[ORGMPluginManager sharedManager] sourceForURL:url error:&error], @"");
+	XCTAssertEqual(error.code, ORGMEngineErrorCodesSourceFailed, @"");
 }
 
 - (void) testManagerShouldReturnErrorForUnknownDecoder {
@@ -49,27 +51,27 @@
 	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
 	[source open:url];
 	NSError *error;
-	STAssertNil([[ORGMPluginManager sharedManager] decoderForSource:source error:&error], nil);
-	STAssertEquals(error.code, ORGMEngineErrorCodesDecoderFailed, nil);
+	XCTAssertNil([[ORGMPluginManager sharedManager] decoderForSource:source error:&error], @"");
+	XCTAssertEqual(error.code, ORGMEngineErrorCodesDecoderFailed, @"");
 }
 
 - (void) testManagerShouldReturnErrorForUnknownContainer {
 	NSURL *url = [NSURL URLWithString:@"file:///User/test.mp34"];
 	NSError *error;
-	STAssertNil([[ORGMPluginManager sharedManager] urlsForContainerURL:url error:&error], nil);
-	STAssertEquals(error.code, ORGMEngineErrorCodesContainerFailed, nil);
+	XCTAssertNil([[ORGMPluginManager sharedManager] urlsForContainerURL:url error:&error], @"");
+	XCTAssertEqual(error.code, ORGMEngineErrorCodesContainerFailed, @"");
 }
 
 - (void) testManagerShouldReturnSourceForHTTPScheme {
 	NSURL *url = [NSURL URLWithString:@"http://mp3.com/test.mp3"];
 	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
-	STAssertEqualObjects([source class], [HTTPSource class], nil);
+	XCTAssertEqualObjects([source class], [HTTPSource class], @"");
 }
 
 - (void) testManagerShouldReturnSourceForFileScheme {
 	NSURL *url = [NSURL URLWithString:@"file://test.mp3"];
 	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
-	STAssertEqualObjects([source class], [FileSource class], nil);
+	XCTAssertEqualObjects([source class], [FileSource class], @"");
 }
 
 - (void) testManagerShouldReturnDecoderForMp3Extension {
@@ -77,15 +79,7 @@
 	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
 	[source open:url];
 	id<ORGMDecoder> decoder = [[ORGMPluginManager sharedManager] decoderForSource:source error:nil];
-	STAssertEqualObjects([decoder class], [CoreAudioDecoder class], nil);
-}
-
-- (void) testManagerShouldReturnDecoderForFlacExtension {
-	NSURL *url = [NSURL URLWithString:@"file:///User/test.flac"];
-	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
-	[source open:url];
-	id<ORGMDecoder> decoder = [[ORGMPluginManager sharedManager] decoderForSource:source error:nil];
-	STAssertEqualObjects([decoder class], [FlacDecoder class], nil);
+	XCTAssertEqualObjects([decoder class], [CoreAudioDecoder class], @"");
 }
 
 - (void) testManagerShouldReturnDecoderForCueExtension {
@@ -93,7 +87,7 @@
 	id<ORGMSource> source = [[ORGMPluginManager sharedManager] sourceForURL:url error:nil];
 	[source open:url];
 	id<ORGMDecoder> decoder = [[ORGMPluginManager sharedManager] decoderForSource:source error:nil];
-	STAssertEqualObjects([decoder class], [CueSheetDecoder class], nil);
+	XCTAssertEqualObjects([decoder class], [CueSheetDecoder class], @"");
 }
 
 - (void) testManagerShouldReturnUrlsFromCueFile {
@@ -101,7 +95,7 @@
 														  withExtension:@"cue"];
 
 	NSArray *urls = [[ORGMPluginManager sharedManager] urlsForContainerURL:url error:nil];
-	STAssertEquals(urls.count, 12U, nil);
+	XCTAssertEqual(urls.count, 12U, @"");
 }
 
 - (void) testManagerShouldReturnUrlsFromM3uFile {
@@ -109,7 +103,7 @@
 														  withExtension:@"m3u"];
 	
 	NSArray *urls = [[ORGMPluginManager sharedManager] urlsForContainerURL:url error:nil];
-	STAssertEquals(urls.count, 13U, nil);
+	XCTAssertEqual(urls.count, 13U, @"");
 }
 
 @end

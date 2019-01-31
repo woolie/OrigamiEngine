@@ -24,8 +24,6 @@
 @import Foundation;
 @import AudioToolbox;
 
-#import <Foundation/NSObjCRuntime.h>
-
 #import "ORGMQueues.h"
 
 // default reading chunk size
@@ -52,7 +50,7 @@ typedef NS_OPTIONS(NSUInteger, ORGMEngineOutputFormat)
  
  @discussion You should implement this method in subclass of `ORGMAudioUnit`.
  */
-- (void)  process;
+- (void) process;
 
 /**
  Converts audio properties from `NSDictionary` to `ASBD` format.

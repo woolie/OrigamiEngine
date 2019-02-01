@@ -1,11 +1,16 @@
 {
-  "name" : "OrigamiEngine",
   "dependencies" : [
-
+    {
+      "repositoryURL" : "git@github.com:ap4y\/Audio-Frameworks.git"
+    },
+    {
+      "repositoryURL" : "git@github.com:woolie\/configurations.git"
+    }
   ],
-  "module" : false,
   "options" : {
     "depdencyInstallationPath" : "modules",
     "alwaysVerbose" : false
-  }
+  },
+  "module" : true,
+  "name" : "OrigamiEngine"
 }

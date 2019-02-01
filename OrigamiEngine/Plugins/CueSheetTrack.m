@@ -24,57 +24,57 @@
 #import "CueSheetTrack.h"
 
 @interface CueSheetTrack ()
-@property (nonatomic, strong) NSURL *url;
-@property (copy, nonatomic) NSString *track;
-@property (copy, nonatomic) NSString *artist;
-@property (copy, nonatomic) NSString *album;
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *genre;
-@property (copy, nonatomic) NSString *year;
-@property (assign, nonatomic) double time;
+@property (nonatomic, strong) NSURL* url;
+@property (nonatomic, copy) NSString* track;
+@property (nonatomic, copy) NSString* artist;
+@property (nonatomic, copy) NSString* album;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* genre;
+@property (nonatomic, copy) NSString* year;
+@property (nonatomic, assign) double time;
 @end
 
 @implementation CueSheetTrack
 
-+ (id)trackWithURL:(NSURL*) url
-			 track:(NSString *)track
-			  time:(double)seconds
-			artist:(NSString *)artist
-			 album:(NSString *)album
-			 title:(NSString *)title
-			 genre:(NSString *)genre
-			  year:(NSString *)year {
-	
++ (instancetype) trackWithURL:(NSURL*) url
+						track:(NSString*) track
+						 time:(double) seconds
+					   artist:(NSString*) artist
+						album:(NSString*) album
+						title:(NSString*) title
+						genre:(NSString*) genre
+						 year:(NSString*) year
+{
 	return [[CueSheetTrack alloc] initWithURL:url
-										 track:track
-										  time:seconds
-										artist:artist
-										 album:album
-										 title:title
-										 genre:genre
-										  year:year];
+										track:track
+										 time:seconds
+									   artist:artist
+										album:album
+										title:title
+										genre:genre
+										 year:year];
 }
 
-- (id)initWithURL:(NSURL*) url
-			track:(NSString *)track
-			 time:(double)seconds
-		   artist:(NSString *)artist
-			album:(NSString *)album
-			title:(NSString *)title
-			genre:(NSString *)genre
-			 year:(NSString *)year {
-
+- (instancetype) initWithURL:(NSURL*) url
+					   track:(NSString*) track
+						time:(double) seconds
+					  artist:(NSString*) artist
+					   album:(NSString*) album
+					   title:(NSString*) title
+					   genre:(NSString*) genre
+						year:(NSString*) year
+{
 	self = [super init];
-	if (self) {
-		self.track = track;
-		self.url = url;
-		self.artist = artist;
-		self.album = album;
-		self.title = title;
-		self.genre = genre;
-		self.year = year;
-		
-		self.time = seconds;
+	if (self != nil)
+	{
+		_url = url;
+		_track = [track copy];
+		_artist = [artist copy];
+		_album = [album copy];
+		_title = [title copy];
+		_genre = [genre copy];
+		_year = [year copy];
+		_time = seconds;
 	}
 	
 	return self;

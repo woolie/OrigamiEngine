@@ -32,3 +32,8 @@ modules/common-ios
 # Ignore PureLayout for Modulo.
 modules/PureLayout
 .DS_Store
+
+# Ignore Audio-Frameworks for Modulo.
+modules/Audio-Frameworks
+# Ignore configurations for Modulo.
+modules/configurations

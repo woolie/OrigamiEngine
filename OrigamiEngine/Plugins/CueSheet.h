@@ -23,10 +23,9 @@
 
 #import "CueSheetTrack.h"
 
-#define singleFileCueSeparator @"#"
+#define kSingleFileCueSeparator @"#"
 
 @interface CueSheet : NSObject
-@property (copy, nonatomic, readonly) NSArray *tracks;
-
-- (id)initWithURL:(NSURL*) url;
+@property (nonatomic, copy, readonly) NSArray* tracks;
+- (instancetype) initWithURL:(NSURL*) url;
 @end

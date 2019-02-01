@@ -22,21 +22,20 @@
 // THE SOFTWARE.
 
 #import "HTTPSource.h"
-@interface HTTPSource () {
-	long _byteCount;
-	long _bytesRead;
-	long long _bytesExpected;
-	long long _bytesWaitingFromCache;
-	dispatch_semaphore_t _downloadingSemaphore;
 
-	BOOL _connectionDidFail;
-}
+@interface HTTPSource ()
+
 @property (nonatomic, strong) NSURLConnection* urlConnection;
 @property (nonatomic, strong) NSMutableURLRequest* request;
 @property (nonatomic, strong) NSFileHandle* fileHandle;
-@end
+@property (nonatomic, assign) BOOL connectionDidFail;
+@property (nonatomic, assign) long byteCount;
+@property (nonatomic, assign) long bytesRead;
+@property (nonatomic, assign) long long	bytesExpected;
+@property (nonatomic, assign) long long	bytesWaitingFromCache;
+@property (nonatomic, strong) dispatch_semaphore_t downloadingSemaphore;
 
-const NSTimeInterval readTimeout = 1.0;
+@end
 
 @implementation HTTPSource
 
@@ -55,7 +54,7 @@ const NSTimeInterval readTimeout = 1.0;
 
 - (NSURL*) url
 {
-	return [_request URL];
+	return self.request.URL;
 }
 
 - (long) size
@@ -88,7 +87,7 @@ const NSTimeInterval readTimeout = 1.0;
 	_bytesExpected = 0;
 	_bytesRead	= 0;
 	_byteCount	 = 0;
-	_connectionDidFail = NO;
+	self.connectionDidFail = NO;
 
 	[self prepareCache:[NSString stringWithFormat:@"%lx.%@",
 						(unsigned long)[[url absoluteString] hash],
@@ -134,7 +133,10 @@ const NSTimeInterval readTimeout = 1.0;
 
 	while(_byteCount < _bytesRead + amount)
 	{
-		if (_connectionDidFail) return 0;
+		if (self.connectionDidFail)
+		{
+			return 0;
+		}
 		_bytesWaitingFromCache = _bytesRead + amount;
 		dispatch_semaphore_wait(_downloadingSemaphore, dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC));
 	}
@@ -164,14 +166,15 @@ const NSTimeInterval readTimeout = 1.0;
 
 #pragma mark - private
 
-+ (dispatch_queue_t)cachingQueue
++ (dispatch_queue_t) cachingQueue
 {
 	static dispatch_queue_t _cachingQueue;
 	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		_cachingQueue = dispatch_queue_create("com.origami.httpcache",
-											  DISPATCH_QUEUE_SERIAL);
+	dispatch_once(&onceToken, ^
+	{
+		_cachingQueue = dispatch_queue_create("com.origami.httpcache", DISPATCH_QUEUE_SERIAL);
 	});
+
 	return _cachingQueue;
 }
 
@@ -211,28 +214,28 @@ const NSTimeInterval readTimeout = 1.0;
 
 #pragma mark - NSURLConnection delegate
 
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void) connection:(NSURLConnection*) connection didReceiveResponse:(NSURLResponse*) response
 {
 	_bytesExpected = response.expectedContentLength;
 	dispatch_semaphore_signal(_downloadingSemaphore);
 
-	if ([_fileHandle seekToEndOfFile] == _bytesExpected)
+	if ([self.fileHandle seekToEndOfFile] == _bytesExpected)
 	{
 		[_urlConnection cancel];
 		_byteCount = (long)_bytesExpected;
 	}
 }
 
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void) connection:(NSURLConnection*) connection didReceiveData:(NSData*) data
 {
 	if(_byteCount >= _bytesWaitingFromCache)
 	{
 		dispatch_semaphore_signal(_downloadingSemaphore);
 	}
 
-	if (data && _fileHandle)
+	if (data && self.fileHandle)
 	{
-		dispatch_async([HTTPSource cachingQueue], ^
+		dispatch_async(HTTPSource.cachingQueue, ^
 		{
 			@synchronized(_fileHandle)
 			{
@@ -247,7 +250,7 @@ const NSTimeInterval readTimeout = 1.0;
 - (void) connection:(NSURLConnection*) connection didFailWithError:(NSError*) error
 {
 	dispatch_semaphore_signal(_downloadingSemaphore);
-	_connectionDidFail = YES;
+	self.connectionDidFail = YES;
 }
 
 @end

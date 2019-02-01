@@ -38,10 +38,13 @@
 
 @implementation ORGMEngine
 
-- (id)init {
+- (instancetype) init
+{
 	self = [super init];
-	if (self) {
-		self.volume = 100.0f;
+	if (self != nil)
+	{
+		_volume = 100.0f;
+
 		[self setup];
 		[self setCurrentState:ORGMEngineStateStopped];
 		[self addObserver:self forKeyPath:@"currentState"
@@ -51,33 +54,41 @@
 	return self;
 }
 
-- (void) dealloc {
+- (void) dealloc
+{
 	[self removeObserver:self forKeyPath:@"currentState"];
 }
 
 #pragma mark - public
 
-- (void) playUrl:(NSURL*) url withOutputUnitClass:(Class)outputUnitClass {
-	if (!outputUnitClass || ![outputUnitClass isSubclassOfClass:[ORGMOutputUnit class]]) {
-
+- (void) playUrl:(NSURL*) url withOutputUnitClass:(Class) outputUnitClass
+{
+	if (!outputUnitClass || ![outputUnitClass isSubclassOfClass:[ORGMOutputUnit class]])
+	{
 		@throw [NSException exceptionWithName:NSInternalInconsistencyException
 									   reason:NSLocalizedString(@"Output unit should be subclass of ORGMOutputUnit", nil)
 									 userInfo:nil];
 	}
 
-	if (self.currentState == ORGMEngineStatePlaying) [self skip];
+	if (self.currentState == ORGMEngineStatePlaying)
+	{
+		[self skip];
+	}
 
-	dispatch_async([ORGMQueues processing_queue], ^{
+	dispatch_async([ORGMQueues processing_queue], ^
+	{
 		self.currentError = nil;
 
-		if (self.input) {
+		if (self.input)
+		{
 			[_input removeObserver: self forKeyPath: @"endOfInput"];
 		}
 	  
-		ORGMInputUnit *input = [[ORGMInputUnit alloc] init];
+		ORGMInputUnit* input = [[ORGMInputUnit alloc] init];
 		self.input = input;
 
-		if (![_input openWithUrl:url]) {
+		if (![_input openWithUrl:url])
+		{
 			self.currentState = ORGMEngineStateError;
 			self.currentError = [NSError errorWithDomain:kErrorDomain
 													code:ORGMEngineErrorCodesSourceFailed
@@ -85,19 +96,21 @@
 															NSLocalizedString(@"Couldn't open source", nil) }];
 			return;
 		}
+
 		[_input addObserver:self forKeyPath:@"endOfInput"
 					options:NSKeyValueObservingOptionNew
 					context:nil];
 
-		ORGMConverter *converter = [[ORGMConverter alloc] initWithInputUnit:_input];
+		ORGMConverter* converter = [[ORGMConverter alloc] initWithInputUnit:_input];
 		self.converter = converter;
 
-		ORGMOutputUnit *output = [[outputUnitClass alloc] initWithConverter:_converter];
+		ORGMOutputUnit* output = [[outputUnitClass alloc] initWithConverter:_converter];
 		output.outputFormat = _outputFormat;
 		self.output = output;
 		[_output setVolume:_volume];
 
-		if (![_converter setupWithOutputUnit:_output]) {
+		if (![_converter setupWithOutputUnit:_output])
+		{
 			self.currentState = ORGMEngineStateError;
 			self.currentError = [NSError errorWithDomain:kErrorDomain
 													code:ORGMEngineErrorCodesConverterFailed
@@ -111,29 +124,37 @@
 	});
 }
 
-- (void) playUrl:(NSURL*) url {
-
-  [self playUrl:url withOutputUnitClass:[ORGMOutputUnit class]];
+- (void) playUrl:(NSURL*) url
+{
+	[self playUrl:url withOutputUnitClass:[ORGMOutputUnit class]];
 }
 
-- (void) pause {
+- (void) pause
+{
 	if (_currentState != ORGMEngineStatePlaying)
+	{
 		return;
+	}
 
 	[_output pause];
 	[self setCurrentState:ORGMEngineStatePaused];
 }
 
-- (void) resume {
+- (void) resume
+{
 	if (_currentState != ORGMEngineStatePaused)
+	{
 		return;
+	}
 
 	[_output resume];
 	[self setCurrentState:ORGMEngineStatePlaying];
 }
 
-- (void) stop {
-	dispatch_async([ORGMQueues processing_queue], ^{
+- (void) stop
+{
+	dispatch_async([ORGMQueues processing_queue], ^
+	{
 		[_input removeObserver:self forKeyPath:@"endOfInput"];
 		self.output = nil;
 		self.input = nil;
@@ -142,8 +163,10 @@
 	});
 }
 
-- (void) skip {
-	dispatch_async([ORGMQueues processing_queue], ^{
+- (void) skip
+{
+	dispatch_async([ORGMQueues processing_queue], ^
+	{
 		[_input removeObserver:self forKeyPath:@"endOfInput"];
 		self.output = nil;
 		self.input = nil;
@@ -151,34 +174,48 @@
 	});
 }
 
-- (double)trackTime {
+- (double) trackTime
+{
 	return [_output framesToSeconds:_input.framesCount];
 }
 
-- (double)amountPlayed {
+- (double) amountPlayed
+{
 	return [_output amountPlayed];
 }
 
-- (NSDictionary*) metadata {
+- (NSDictionary*) metadata
+{
 	return [_input metadata];
 }
 
-- (void) seekToTime:(double)time withDataFlush:(BOOL)flush {
+- (void) seekToTime:(double) time withDataFlush:(BOOL) flush
+{
 	[_output seek:time];
 	[_input seek:time withDataFlush:flush];
-	if (flush) [_converter flushBuffer];
+	if (flush)
+	{
+		[_converter flushBuffer];
+	}
 }
 
-- (void) seekToTime:(double)time {
+- (void) seekToTime:(double) time
+{
 	[self seekToTime:time withDataFlush:NO];
 }
 
-- (void) setNextUrl:(NSURL*) url withDataFlush:(BOOL)flush {
-	if (!url) {
+- (void) setNextUrl:(NSURL*) url withDataFlush:(BOOL) flush
+{
+	if (!url)
+	{
 		[self stop];
-	} else {
-		dispatch_async([ORGMQueues processing_queue], ^{
-			if (![_input openWithUrl:url]) {
+	}
+	else
+	{
+		dispatch_async([ORGMQueues processing_queue], ^
+		{
+			if (![_input openWithUrl:url])
+			{
 				[self stop];
 			}
 			[_converter reinitWithNewInput:_input withDataFlush:flush];
@@ -190,39 +227,49 @@
 
 #pragma mark - private
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object
-						change:(NSDictionary *)change
-					   context:(void *)context {
+- (void) observeValueForKeyPath:(NSString*) keyPath
+					   ofObject:(id) object
+						 change:(NSDictionary*) change
+						context:(void*) context
+{
 	if (!_delegate)
 		return;
 
 	if ([keyPath isEqualToString:@"currentState"] &&
-		[_delegate respondsToSelector:@selector(engine:didChangeState:)]) {
-		dispatch_async(dispatch_get_main_queue(), ^{
+		[_delegate respondsToSelector:@selector(engine:didChangeState:)])
+	{
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
 			[_delegate engine:self didChangeState:_currentState];
 		});
-	} else if ([keyPath isEqualToString:@"endOfInput"]) {
-		NSURL *nextUrl = [_delegate engineExpectsNextUrl:self];
-		if (!nextUrl) {
+	}
+	else if ([keyPath isEqualToString:@"endOfInput"])
+	{
+		NSURL* nextUrl = [_delegate engineExpectsNextUrl:self];
+		if (!nextUrl)
+		{
 			[self setCurrentState:ORGMEngineStateStopped];
 			return;
 		}
 
-		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
 			[self setNextUrl:nextUrl withDataFlush:NO];
 		});
 	}
 }
 
-- (void) setup {
-	dispatch_source_set_event_handler([ORGMQueues buffering_source], ^{
+- (void) setup
+{
+	dispatch_source_set_event_handler([ORGMQueues buffering_source], ^
+	{
 		[_input process];
 		[_converter process];
 	});
 }
 
-- (void) setVolume:(float)volume {
+- (void) setVolume:(float) volume
+{
 	_volume = volume;
 	[_output setVolume:volume];
 }

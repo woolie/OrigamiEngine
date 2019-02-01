@@ -45,29 +45,52 @@ typedef NS_ENUM(NSInteger, ORGMEngineState)
 /**
  Engine output format
  */
-@property (assign, nonatomic) ORGMEngineOutputFormat outputFormat;
+@property (nonatomic, assign) ORGMEngineOutputFormat outputFormat;
 
 /**
  Engine output volume value in `percent`. Default value `100%`.
  */
-@property (assign, nonatomic) float volume;
+@property (nonatomic, assign) float volume;
 
 /**
  Current state of the engine instance.
  */
-@property (assign, nonatomic, readonly) ORGMEngineState currentState;
+@property (nonatomic, assign, readonly) ORGMEngineState currentState;
 
 /**
  Current error of the instance.
 
  @discussion Value will be provided only for the `ORGMEngineStateError`, with other states this propertie will return `nil`.
  */
-@property (strong, nonatomic, readonly) NSError *currentError;
+@property (nonatomic, strong, readonly) NSError *currentError;
 
 /**
  The object that conforms ORGMEngineDelegate protocol and acts as the delegate.
  */
-@property (weak, nonatomic) id<ORGMEngineDelegate> delegate;
+@property (nonatomic, weak) id<ORGMEngineDelegate> delegate;
+
+/**
+ Provides current track length.
+
+ @return Overall track time in `seconds`.
+ */
+@property (nonatomic, readonly) double trackTime;
+
+/**
+ Provides played time.
+
+ @return Played amount in `seconds`.
+ */
+@property (nonatomic, readonly) double amountPlayed;
+
+/**
+ Returns current track metadata.
+
+ @discussion Dictionary data format depends on the track format. Coverart is included as `NSData` object.
+
+ @return Metadata dictionary or `nil` if track don't have metadata.
+ */
+@property (nonatomic, copy) NSDictionary* metadata;
 
 /**
  Starts new playback process from corresponding source with provided output type of output unit.
@@ -103,29 +126,6 @@ typedef NS_ENUM(NSInteger, ORGMEngineState)
  @discussion This will halt all playback lifecycle and will destroy underlying objects.
  */
 - (void) stop;
-
-/**
- Provides current track length.
-
- @return Overall track time in `seconds`.
- */
-- (double)trackTime;
-
-/**
- Provides played time.
-
- @return Played amount in `seconds`.
- */
-- (double)amountPlayed;
-
-/**
- Returns current track metadata.
-
- @discussion Dictionary data format depends on the track format. Coverart is included as `NSData` object.
-
- @return Metadata dictionary or `nil` if track don't have metadata.
- */
-- (NSDictionary*) metadata;
 
 /**
  Provides ability to seek within playing track.

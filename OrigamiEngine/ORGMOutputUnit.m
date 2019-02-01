@@ -39,7 +39,7 @@
 
 @implementation ORGMOutputUnit
 
-- (id)initWithConverter:(ORGMConverter *)converter {
+- (instancetype) initWithConverter:(ORGMConverter *)converter {
 	self = [super init];
 	if (self) {
 		outputUnit = NULL;

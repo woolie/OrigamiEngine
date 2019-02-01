@@ -26,38 +26,42 @@
 #import "ORGMInputUnit.h"
 #import "ORGMOutputUnit.h"
 
-@interface ORGMConverter () {
-	AudioStreamBasicDescription _inputFormat;
-	AudioStreamBasicDescription _outputFormat;
-	AudioConverterRef _converter;
+@interface ORGMConverter ()
+{
+	AudioStreamBasicDescription	_inputFormat;
+	AudioStreamBasicDescription	_outputFormat;
+	AudioConverterRef			_converter;
 
-	void *callbackBuffer;
-	void *writeBuf;
+	void*						_callbackBuffer;
+	void*						_writeBuf;
 }
 
-@property (nonatomic, strong) ORGMInputUnit *inputUnit;
-@property (weak, nonatomic) ORGMOutputUnit *outputUnit;
-@property (nonatomic, strong) NSMutableData *convertedData;
+@property (nonatomic, strong) ORGMInputUnit* inputUnit;
+@property (nonatomic, weak) ORGMOutputUnit* outputUnit;
+@property (nonatomic, strong) NSMutableData* convertedData;
 @end
 
 @implementation ORGMConverter
 
-- (id)initWithInputUnit:(ORGMInputUnit *)inputUnit {
+- (instancetype) initWithInputUnit:(ORGMInputUnit*) inputUnit
+{
 	self = [super init];
-	if (self) {
-		self.convertedData = [NSMutableData data];
+	if (self)
+	{
+		_convertedData = [NSMutableData data];
 
-		self.inputUnit = inputUnit;
+		_inputUnit = inputUnit;
 		_inputFormat = inputUnit.format;
 
-		writeBuf = malloc(CHUNK_SIZE);
+		_writeBuf = malloc(CHUNK_SIZE);
 	}
 	return self;
 }
 
-- (void) dealloc {
-	free(callbackBuffer);
-	free(writeBuf);
+- (void) dealloc
+{
+	free(_callbackBuffer);
+	free(_writeBuf);
 
 	_inputUnit = nil;
 }
@@ -69,7 +73,7 @@
 	[_outputUnit setSampleRate:_inputFormat.mSampleRate];
 
 	_outputFormat = outputUnit.format;
-	callbackBuffer = malloc((CHUNK_SIZE/_outputFormat.mBytesPerFrame) * _inputFormat.mBytesPerPacket);
+	_callbackBuffer = malloc((CHUNK_SIZE/_outputFormat.mBytesPerFrame) * _inputFormat.mBytesPerPacket);
 
 	OSStatus stat = AudioConverterNew(&_inputFormat, &_outputFormat, &_converter);
 	if (stat != noErr) {
@@ -93,20 +97,26 @@
 	return YES;
 }
 
-- (void) process {
+- (void) process
+{
 	int amountConverted = 0;
-	do {
-		if (_convertedData.length >= BUFFER_SIZE) {
+	do
+	{
+		if (_convertedData.length >= BUFFER_SIZE)
+		{
 			break;
 		}
-		amountConverted = [self convert:writeBuf amount:CHUNK_SIZE];
-		dispatch_sync([ORGMQueues lock_queue], ^{
-			[_convertedData appendBytes:writeBuf length:amountConverted];
+		amountConverted = [self convert:_writeBuf amount:CHUNK_SIZE];
+		dispatch_sync([ORGMQueues lock_queue], ^
+		{
+			[_convertedData appendBytes:_writeBuf length:amountConverted];
 		});
 	} while (amountConverted > 0);
 
-	if (!_outputUnit.isProcessing) {
-		if (_convertedData.length < BUFFER_SIZE) {
+	if (!_outputUnit.isProcessing)
+	{
+		if (_convertedData.length < BUFFER_SIZE)
+		{
 			dispatch_source_merge_data([ORGMQueues buffering_source], 1);
 			return;
 		}
@@ -123,7 +133,8 @@
 	[self setupWithOutputUnit:_outputUnit];
 }
 
-- (NSUInteger)shiftBytes:(NSUInteger)amount buffer:(void *)buffer {
+- (NSUInteger) shiftBytes:(NSUInteger) amount buffer:(void*) buffer
+{
 	NSUInteger bytesToRead = MIN(_convertedData.length, amount);
 
 	dispatch_sync([ORGMQueues lock_queue], ^
@@ -135,32 +146,35 @@
 	return bytesToRead;
 }
 
-- (BOOL) isReadyForBuffering {
+- (BOOL) isReadyForBuffering
+{
 	return (_convertedData.length <= 0.5*BUFFER_SIZE && !_inputUnit.isProcessing);
 }
 
-- (void) flushBuffer {
-	dispatch_sync([ORGMQueues lock_queue], ^{
+- (void) flushBuffer
+{
+	dispatch_sync([ORGMQueues lock_queue], ^
+	{
 		self.convertedData = [NSMutableData data];
 	});
 }
 
 #pragma mark - private
 
-- (int)convert:(void *)dest amount:(int)amount {
-	AudioBufferList ioData;
-	UInt32 ioNumberFrames;
-	OSStatus err;
+- (int) convert:(void*) dest amount:(int) amount
+{
+	UInt32 ioNumberFrames = amount / _outputFormat.mBytesPerFrame;
 
-	ioNumberFrames = amount/_outputFormat.mBytesPerFrame;
+	AudioBufferList ioData;
 	ioData.mBuffers[0].mData = dest;
 	ioData.mBuffers[0].mDataByteSize = amount;
 	ioData.mBuffers[0].mNumberChannels = _outputFormat.mChannelsPerFrame;
 	ioData.mNumberBuffers = 1;
 
-	err = AudioConverterFillComplexBuffer(_converter, ACInputProc, (__bridge void * _Nullable)(self), &ioNumberFrames, &ioData, NULL);
+	OSStatus err = AudioConverterFillComplexBuffer(_converter, ACInputProc, (__bridge void* _Nullable)(self), &ioNumberFrames, &ioData, NULL);
 	int amountRead = ioData.mBuffers[0].mDataByteSize;
-	if (err == kAudioConverterErr_InvalidInputSize)	{
+	if (err == kAudioConverterErr_InvalidInputSize)
+	{
 		amountRead += [self convert:dest + amountRead amount:amount - amountRead];
 	}
 
@@ -168,22 +182,25 @@
 }
 
 static OSStatus ACInputProc(AudioConverterRef inAudioConverter,
-							UInt32* ioNumberDataPackets, AudioBufferList* ioData,
+							UInt32* ioNumberDataPackets,
+							AudioBufferList* ioData,
 							AudioStreamPacketDescription** outDataPacketDescription,
-							void* inUserData) {
-	ORGMConverter *converter = (__bridge ORGMConverter *)inUserData;
+							void* inUserData)
+{
+	ORGMConverter* converter = (__bridge ORGMConverter*)inUserData;
 	OSStatus err = noErr;
 	int amountToWrite = (int)[converter.inputUnit shiftBytes:(*ioNumberDataPackets)*(converter->_inputFormat.mBytesPerPacket)
-													  buffer:converter->callbackBuffer];
+													  buffer:converter->_callbackBuffer];
 
-	if (amountToWrite == 0) {
+	if (amountToWrite == 0)
+	{
 		ioData->mBuffers[0].mDataByteSize = 0;
 		*ioNumberDataPackets = 0;
 
 		return 100;
 	}
 
-	ioData->mBuffers[0].mData = converter->callbackBuffer;
+	ioData->mBuffers[0].mData = converter->_callbackBuffer;
 	ioData->mBuffers[0].mDataByteSize = amountToWrite;
 	ioData->mBuffers[0].mNumberChannels = (converter->_inputFormat.mChannelsPerFrame);
 	ioData->mNumberBuffers = 1;

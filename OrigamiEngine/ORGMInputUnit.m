@@ -41,7 +41,7 @@
 
 @implementation ORGMInputUnit
 
-- (id)init {
+- (instancetype) init {
 	self = [super init];
 	if (self) {
 		self.data = [NSMutableData data];
